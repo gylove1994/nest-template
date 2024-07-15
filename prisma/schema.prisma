@@ -1,0 +1,141 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator prismaClassGenerator {
+  provider = "prisma-class-generator"
+  dryRun   = false
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String         @id @default(uuid())
+  email        String         @unique
+  name         String?
+  password     String
+  status       UserStatus     @default(ACTIVE)
+  profile      Profile?
+  session      Session[]
+  role         Role           @relation(fields: [roleId], references: [id])
+  roleId       String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  deletedAt    DateTime?
+  operationLog OperationLog[]
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum RoleStatus {
+  ACTIVE
+  INACTIVE
+}
+
+model Profile {
+  id        String    @id @default(uuid())
+  bio       String?
+  avatar    String?
+  phone     String?
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model Session {
+  id          String    @id @default(uuid())
+  token       String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  expiresAt   DateTime
+  description String?
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+}
+
+model Role {
+  id             String          @id @default(uuid())
+  name           String          @unique
+  description    String?
+  user           User[]
+  permissions    Permission[]
+  apiPermissions ApiPermission[]
+  status         RoleStatus      @default(ACTIVE)
+  deletable      Boolean         @default(true)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  deletedAt      DateTime?
+}
+
+model Permission {
+  id               String            @id @default(uuid())
+  name             String            @unique
+  description      String?
+  roles            Role[]
+  permissionGroups PermissionGroup[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  deletedAt        DateTime?
+}
+
+model PermissionGroup {
+  id          String       @id @default(uuid())
+  name        String
+  description String?
+  permissions Permission[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  deletedAt   DateTime?
+}
+
+model ApiPermission {
+  id                  String               @id @default(uuid())
+  path                String
+  method              String
+  description         String?
+  isPublic            Boolean              @default(false)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  apiPermissionGroups ApiPermissionGroup[]
+  OperationLogs       OperationLog[]
+  roles               Role[]
+
+  @@unique([path, method])
+}
+
+model ApiPermissionGroup {
+  id          String          @id @default(uuid())
+  name        String
+  description String?
+  permissions ApiPermission[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  deletedAt   DateTime?
+}
+
+model OperationLog {
+  id              String        @id @default(uuid())
+  userId          String
+  user            User          @relation(fields: [userId], references: [id])
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  deletedAt       DateTime?
+  ApiPermission   ApiPermission @relation(fields: [apiPermissionId], references: [id])
+  apiPermissionId String
+  data            String
+}
