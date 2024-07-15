@@ -71,11 +71,11 @@ export class ApiPermissionGuard implements CanActivate {
         roles: true,
       },
     });
-    if (!user || !user.role) {
-      throw new UnauthorizedException('User not found or role not found');
-    }
     if (api.isPublic) {
       return true;
+    }
+    if (!user || !user.role) {
+      throw new UnauthorizedException('User not found or role not found');
     }
     if (user.role.name === 'admin') {
       data.success = true;
