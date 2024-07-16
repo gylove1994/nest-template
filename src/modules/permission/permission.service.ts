@@ -3,7 +3,7 @@ import { CreatePermissionDto } from './dto/create-permission.dto';
 import { UpdatePermissionDto } from './dto/update-permission.dto';
 import { PrismaService } from 'nestjs-prisma';
 import { PaginationPermissionDto } from './dto/pagination-permission.dto';
-import { Permission } from 'src/_gen/prisma-class/permission';
+import { Permission } from '@/_gen/prisma-class/permission';
 
 @Injectable()
 export class PermissionService {

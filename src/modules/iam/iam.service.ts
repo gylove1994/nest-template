@@ -10,7 +10,7 @@ import { SignInDto } from './dtos/sign-in.dto';
 import { User } from '@prisma/client';
 import { randomBytes } from 'crypto';
 import { PRESET_ROLE } from './constants/preset-role.constant';
-import InitUtil from 'src/utils/init';
+import InitUtil from '@/utils/init';
 import { IAM_INIT_KEY } from './constants/iam-init.constant';
 
 @Injectable()

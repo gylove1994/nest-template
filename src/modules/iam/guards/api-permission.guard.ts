@@ -16,8 +16,9 @@ export class ApiPermissionGuard implements CanActivate {
     const request = context.switchToHttp().getRequest<Request>();
     const req = context.switchToHttp().getRequest();
     const token = req.headers['authorization'];
+    let session = null;
     if (token) {
-      const session = await this.prisma.session.findFirstOrThrow({
+      session = await this.prisma.session.findFirst({
         where: {
           token,
           expiresAt: {
@@ -36,9 +37,9 @@ export class ApiPermissionGuard implements CanActivate {
           },
         },
       });
-      req.user = session.user;
+      req.user = session ? session.user : undefined;
       Logger.log(
-        `Incoming request user:${req.user.email}`,
+        `Incoming request user:${req.user ? req.user.email : 'invalid-token'}`,
         'ApiPermissionGuard',
       );
     } else {
@@ -74,7 +75,10 @@ export class ApiPermissionGuard implements CanActivate {
     if (api.isPublic) {
       return true;
     }
-    if (!user || !user.role) {
+    if (!session) {
+      throw new UnauthorizedException('Token not found or expired');
+    }
+    if (user === undefined || user.role === undefined) {
       throw new UnauthorizedException('User not found or role not found');
     }
     if (user.role.name === 'admin') {
@@ -89,7 +93,7 @@ export class ApiPermissionGuard implements CanActivate {
       return true;
     }
     const userApiPermission = user.role.apiPermission;
-    if (userApiPermission.find((p) => p.id === api.id)) {
+    if (userApiPermission && userApiPermission.find((p) => p.id === api.id)) {
       data.success = true;
       await this.prisma.operationLog.create({
         data: {

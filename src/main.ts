@@ -5,9 +5,28 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { APP_CONFIG_TOKEN, IAppConfig } from './configs/app-config';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { syncRoute } from './utils/sync-route';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import helmet from 'helmet';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
+export async function bootstrap(app: NestExpressApplication) {
+  const configService = app.get(ConfigService);
+  const appConfig = configService.get<IAppConfig>(APP_CONFIG_TOKEN);
+  app.useGlobalPipes(
+    new ValidationPipe({
+      disableErrorMessages: appConfig.env === 'production',
+      whitelist: true,
+      transform: true,
+    }),
+  );
+  if (appConfig.env !== 'production') {
+    app.enableCors();
+  }
+  app.use(helmet());
+  return app;
+}
+
+async function main() {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     snapshot: true,
   });
   const configService = app.get(ConfigService);
@@ -17,13 +36,7 @@ async function bootstrap() {
     .setDescription(appConfig.appDescription)
     .setVersion(appConfig.appVersion)
     .build();
-  app.useGlobalPipes(
-    new ValidationPipe({
-      disableErrorMessages: appConfig.env === 'production',
-      // whitelist: appConfig.env === 'production',
-      transform: true,
-    }),
-  );
+  await bootstrap(app);
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('sapi', app, document);
   await app.listen(appConfig.port);
@@ -42,4 +55,6 @@ async function bootstrap() {
   Logger.log(`-------------------------------------`, 'Bootstrap');
 }
 
-bootstrap();
+if (require.main === module) {
+  main();
+}

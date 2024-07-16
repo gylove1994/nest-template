@@ -9,15 +9,17 @@ import { ApiPermissionModule } from './modules/api-permission/api-permission.mod
 import { PermissionModule } from './modules/permission/permission.module';
 import { RoleModule } from './modules/role/role.module';
 
+const envFilePath = process.env.NODE_ENV;
 @Module({
   imports: [
     DevtoolsModule.register({
-      http: process.env.NODE_ENV !== 'production',
+      http: process.env.NODE_ENV == 'development',
       port: 8000,
     }),
     ConfigModule.forRoot({
       isGlobal: true,
       load: [appConfig],
+      envFilePath: `.env.${envFilePath ?? 'production'}`,
     }),
     IamModule,
     UserModule,
