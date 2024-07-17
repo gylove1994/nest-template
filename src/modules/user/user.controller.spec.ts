@@ -24,7 +24,7 @@ describe('User Controller', () => {
   it('create user with existed email', async () => {
     const token = await testHelper.genToken('admin');
     const req = testHelper.request;
-    await req.post('/user').set('Authorization', `${token}`).send({
+    const res1 = await req.post('/user').set('Authorization', `${token}`).send({
       email: '123@qq.com',
       password: '12345678',
     });
@@ -33,11 +33,13 @@ describe('User Controller', () => {
       password: '123456789',
     });
     testHelper.cleanUpCallbacks.push(async () => {
-      await testHelper.prismaClient.user.delete({
-        where: {
-          email: '123@qq.com',
-        },
-      });
+      if (res2.body.id || res1.body.id) {
+        await testHelper.prismaClient.user.delete({
+          where: {
+            email: '123@qq.com',
+          },
+        });
+      }
     });
     expect(res2.status).toBe(400);
   });
@@ -77,7 +79,15 @@ describe('User Controller', () => {
       email: '123',
       password: '12345678',
     });
-    console.log(res.body);
+    testHelper.cleanUpCallbacks.push(async () => {
+      if (res.body.id) {
+        await testHelper.prismaClient.user.delete({
+          where: {
+            id: res.body.id,
+          },
+        });
+      }
+    });
     expect(res.status).toBe(400);
   });
 
@@ -88,7 +98,74 @@ describe('User Controller', () => {
       email: '123@qq.com',
       password: '123',
     });
-    console.log(res.body);
+    testHelper.cleanUpCallbacks.push(async () => {
+      if (res.body.id) {
+        await testHelper.prismaClient.user.delete({
+          where: {
+            id: res.body.id,
+          },
+        });
+      }
+    });
     expect(res.status).toBe(400);
+  });
+
+  it('create user with invalid role', async () => {
+    const token = await testHelper.genToken('admin');
+    const req = testHelper.request;
+    const res = await req.post('/user').set('Authorization', `${token}`).send({
+      email: '123@qq.com',
+      password: '123456578',
+      roleId: 'invalid',
+    });
+    testHelper.cleanUpCallbacks.push(async () => {
+      if (res.body.id) {
+        await testHelper.prismaClient.user.delete({
+          where: {
+            id: res.body.id,
+          },
+        });
+      }
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('create user with profile', async () => {
+    const token = await testHelper.genToken('admin');
+    const req = testHelper.request;
+    const res = await req.post('/user').set('Authorization', `${token}`).send({
+      email: '123@qq.com',
+      password: '12345678',
+      phone: '12345678901',
+    });
+    testHelper.cleanUpCallbacks.push(async () => {
+      if (res.body.id) {
+        await testHelper.prismaClient.user.delete({
+          where: {
+            id: res.body.id,
+          },
+        });
+      }
+    });
+    expect(res.status).toBe(201);
+  });
+
+  it('create user with invalid profile', async () => {
+    const token = await testHelper.genToken('admin');
+    const req = testHelper.request;
+    const res = await req.post('/user').set('Authorization', `${token}`).send({
+      email: '123@qq.com',
+      password: '12345678',
+      phone: '12345678901',
+    });
+    testHelper.cleanUpCallbacks.push(async () => {
+      if (res.body.id) {
+        await testHelper.prismaClient.user.delete({
+          where: {
+            id: res.body.id,
+          },
+        });
+      }
+    });
   });
 });

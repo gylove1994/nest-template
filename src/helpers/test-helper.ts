@@ -6,6 +6,8 @@ import { bootstrap } from '@/main';
 import { syncRoute } from '@/utils/sync-route';
 import * as request from 'supertest';
 import { randomBytes } from 'crypto';
+import { ValidationPipe } from '@nestjs/common';
+import { APP_PIPE } from '@nestjs/core';
 
 export class TestHelper {
   private moduleRef: TestingModule;
@@ -24,6 +26,15 @@ export class TestHelper {
     beforeAll(async () => {
       const moduleRefBake = Test.createTestingModule({
         imports: [AppModule],
+        providers: [
+          {
+            provide: APP_PIPE,
+            useValue: new ValidationPipe({
+              whitelist: true,
+              transform: true,
+            }),
+          },
+        ],
       });
 
       for (const provider of mockProviders) {
