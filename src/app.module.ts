@@ -8,6 +8,9 @@ import { UserModule } from './modules/user/user.module';
 import { ApiPermissionModule } from './modules/api-permission/api-permission.module';
 import { PermissionModule } from './modules/permission/permission.module';
 import { RoleModule } from './modules/role/role.module';
+import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { HttpModule } from '@nestjs/axios';
 
 const envFilePath = process.env.NODE_ENV;
 @Module({
@@ -21,6 +24,7 @@ const envFilePath = process.env.NODE_ENV;
       load: [appConfig],
       envFilePath: `.env.${envFilePath ?? 'production'}`,
     }),
+    CacheModule.register(),
     IamModule,
     UserModule,
     ApiPermissionModule,
@@ -29,6 +33,13 @@ const envFilePath = process.env.NODE_ENV;
     PrismaModule.forRoot({
       isGlobal: true,
     }),
+    HttpModule.register({}),
+  ],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CacheInterceptor,
+    },
   ],
 })
 export class AppModule {}

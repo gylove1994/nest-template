@@ -7,6 +7,8 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { syncRoute } from './utils/sync-route';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import helmet from 'helmet';
+import * as compression from 'compression';
+import * as cookieParser from 'cookie-parser';
 
 export async function bootstrap(app: NestExpressApplication) {
   const configService = app.get(ConfigService);
@@ -22,6 +24,8 @@ export async function bootstrap(app: NestExpressApplication) {
     app.enableCors();
   }
   app.use(helmet());
+  app.use(compression());
+  app.use(cookieParser());
   return app;
 }
 
