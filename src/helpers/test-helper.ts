@@ -101,13 +101,6 @@ export class TestHelper {
         },
       },
     });
-    this.cleanUpCallbacks.push(async () => {
-      await this.prismaClient.user.delete({
-        where: {
-          id: user.id,
-        },
-      });
-    });
     return user;
   }
 

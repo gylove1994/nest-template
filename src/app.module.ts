@@ -24,7 +24,9 @@ const envFilePath = process.env.NODE_ENV;
       load: [appConfig],
       envFilePath: `.env.${envFilePath ?? 'production'}`,
     }),
-    CacheModule.register(),
+    CacheModule.register({
+      isGlobal: true,
+    }),
     IamModule,
     UserModule,
     ApiPermissionModule,

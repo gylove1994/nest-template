@@ -136,7 +136,7 @@ describe('User Controller', () => {
     const res = await req.post('/user').set('Authorization', `${token}`).send({
       email: '123@qq.com',
       password: '12345678',
-      phone: '12345678901',
+      phone: '18986272222',
     });
     testHelper.cleanUpCallbacks.push(async () => {
       if (res.body.id) {
@@ -167,5 +167,78 @@ describe('User Controller', () => {
         });
       }
     });
+  });
+
+  it('get user list', async () => {
+    const token = await testHelper.genToken('admin');
+    const req = testHelper.request;
+    const res = await req.get('/user').set('Authorization', `${token}`).send({
+      page: 1,
+      pageSize: 10,
+    });
+    expect(res.status).toBe(200);
+  });
+
+  it('get user list without permission', async () => {
+    const token = await testHelper.genToken('user');
+    const req = testHelper.request;
+    const res = await req.get('/user').set('Authorization', `${token}`);
+    expect(res.status).toBe(403);
+  });
+
+  it('get user list without token', async () => {
+    const req = testHelper.request;
+    const res = await req.get('/user');
+    expect(res.status).toBe(401);
+  });
+
+  it('get user list with invalid token', async () => {
+    const req = testHelper.request;
+    const res = await req.get('/user').set('Authorization', 'asdf');
+    expect(res.status).toBe(401);
+  });
+
+  it('get user by id', async () => {
+    const token = await testHelper.genToken('admin');
+    const user = await testHelper.genUser({
+      email: '123@qq.com',
+      pass: '12345678',
+      role: 'user',
+    });
+    const req = testHelper.request;
+    const res = await req
+      .get(`/user/${user.id}`)
+      .set('Authorization', `${token}`);
+    testHelper.cleanUpCallbacks.push(async () => {
+      await testHelper.prismaClient.user.delete({
+        where: {
+          id: user.id,
+        },
+      });
+    });
+    expect(res.status).toBe(200);
+  });
+
+  it('get user by id without permission', async () => {
+    const token = await testHelper.genToken('user');
+    const user = await testHelper.genUser({
+      email: '123@qq.com',
+      pass: '12345678',
+      role: 'user',
+    });
+    const req = testHelper.request;
+    const res = await req
+      .get(`/user/${user.id}`)
+      .set('Authorization', `${token}`);
+    testHelper.cleanUpCallbacks.push(async () => {
+      if (user.id) {
+        await testHelper.prismaClient.user.delete({
+          where: {
+            id: user.id,
+          },
+        });
+      }
+    });
+    expect(res.status).toBe(403);
   });
 });
