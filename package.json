@@ -26,6 +26,7 @@
     "p:studio:dev": "dotenv -e .env.development prisma studio",
     "p:studio:prod": "dotenv -e .env.production prisma studio",
     "p:studio:test": "dotenv -e .env.test prisma studio",
+    "p:check": "prisma validate && prisma migrate reset -f",
     "doc:gen": "compodoc -p tsconfig.json",
     "doc:serve": "compodoc -p tsconfig.json -s",
     "lint-staged": "lint-staged",

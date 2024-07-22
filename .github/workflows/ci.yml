@@ -2,9 +2,12 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
+
+env:
+  DATABASE_URL: postgres://testuser:testpassword@localhost:5432/testdb
 
 jobs:
   build:
@@ -26,35 +29,36 @@ jobs:
           --health-retries 5
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20'  # 根据你的项目需求选择合适的 Node.js 版本
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20' # 根据你的项目需求选择合适的 Node.js 版本
 
-    - name: Install pnpm
-      run: npm install -g pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
 
-    - name: Cache pnpm modules
-      uses: actions/cache@v2
-      with:
-        path: ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
 
-    - name: Install dependencies
-      run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
-    - name: lint
-      run: pnpm lint
+      - name: Setup db
+        run: pnpm run p:check
 
-    - name: Build
-      run: pnpm run build
+      - name: lint
+        run: pnpm lint
 
-    - name: Run tests
-      run: pnpm run test
-      env:
-        DATABASE_URL: postgres://testuser:testpassword@localhost:5432/testdb
+      - name: Build
+        run: pnpm run build
+
+      - name: Run tests
+        run: pnpm run test
