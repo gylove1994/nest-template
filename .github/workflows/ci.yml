@@ -51,6 +51,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: prisma migrate deploy
+        run: pnpm prebuild
+
       - name: Setup db
         run: pnpm run p:check
 
