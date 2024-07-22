@@ -52,10 +52,7 @@ jobs:
         run: pnpm install
 
       - name: prisma migrate deploy
-        run: pnpm prebuild
-
-      - name: Setup db
-        run: pnpm run p:check
+        run: pnpm p:run
 
       - name: lint
         run: pnpm lint
