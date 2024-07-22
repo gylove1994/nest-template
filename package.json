@@ -23,6 +23,7 @@
     "p:migrate:dev": "dotenv -e .env.development prisma migrate dev",
     "p:reset:dev": "dotenv -e .env.development prisma migrate reset",
     "pretest": "dotenv -e .env.test prisma migrate reset --force",
+    "prebuild": "rm -rf dist && prisma migrate deploy",
     "p:studio:dev": "dotenv -e .env.development prisma studio",
     "p:studio:prod": "dotenv -e .env.production prisma studio",
     "p:studio:test": "dotenv -e .env.test prisma studio",
