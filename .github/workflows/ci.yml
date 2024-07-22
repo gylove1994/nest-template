@@ -54,6 +54,9 @@ jobs:
       - name: prisma migrate deploy
         run: pnpm p:run
 
+      - name: prisma init
+        run: pnpm p:check
+
       - name: lint
         run: pnpm lint
 
