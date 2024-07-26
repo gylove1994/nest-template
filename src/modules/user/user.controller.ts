@@ -25,8 +25,8 @@ export class UserController {
 
   @Get('detail')
   @ApiOperation({ summary: '获取单个用户' })
-  findOne(@Query('id') id: string) {
-    return this.userService.findOne(id);
+  findOne(@Query() dto: UserIdExistDto) {
+    return this.userService.findOne(dto.id);
   }
 
   @Post('update')
