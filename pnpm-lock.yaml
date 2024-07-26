@@ -42,8 +42,8 @@ importers:
         specifier: ^10.3.10
         version: 10.3.10(@nestjs/common@10.3.10(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.3.10)(@nestjs/platform-socket.io@10.3.10)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@prisma/client':
-        specifier: 5.16.1
-        version: 5.16.1(prisma@5.16.1)
+        specifier: 5.17.0
+        version: 5.17.0(prisma@5.16.1)
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -82,7 +82,7 @@ importers:
         version: 1.10.0(@nestjs/common@10.3.10(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(winston@3.13.0)
       nestjs-prisma:
         specifier: ^0.23.0
-        version: 0.23.0(@nestjs/common@10.3.10(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@prisma/client@5.16.1(prisma@5.16.1))(chokidar@3.6.0)(prisma@5.16.1)
+        version: 0.23.0(@nestjs/common@10.3.10(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@prisma/client@5.17.0(prisma@5.16.1))(chokidar@3.6.0)(prisma@5.16.1)
       prisma-class-generator:
         specifier: ^0.2.9
         version: 0.2.9(prisma@5.16.1)
@@ -1255,8 +1255,8 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@prisma/client@5.16.1':
-    resolution: {integrity: sha512-wM9SKQjF0qLxdnOZIVAIMKiz6Hu7vDt4FFAih85K1dk/Rr2mdahy6d3QP41K62N9O0DJJA//gUDA3Mp49xsKIg==}
+  '@prisma/client@5.17.0':
+    resolution: {integrity: sha512-N2tnyKayT0Zf7mHjwEyE8iG7FwTmXDHFZ1GnNhQp0pJUObsuel4ZZ1XwfuAYkq5mRIiC/Kot0kt0tGCfLJ70Jw==}
     engines: {node: '>=16.13'}
     peerDependencies:
       prisma: '*'
@@ -6384,7 +6384,7 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@prisma/client@5.16.1(prisma@5.16.1)':
+  '@prisma/client@5.17.0(prisma@5.16.1)':
     optionalDependencies:
       prisma: 5.16.1
 
@@ -9253,12 +9253,12 @@ snapshots:
       fast-safe-stringify: 2.1.1
       winston: 3.13.0
 
-  nestjs-prisma@0.23.0(@nestjs/common@10.3.10(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@prisma/client@5.16.1(prisma@5.16.1))(chokidar@3.6.0)(prisma@5.16.1):
+  nestjs-prisma@0.23.0(@nestjs/common@10.3.10(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@prisma/client@5.17.0(prisma@5.16.1))(chokidar@3.6.0)(prisma@5.16.1):
     dependencies:
       '@angular-devkit/core': 13.3.11(chokidar@3.6.0)
       '@angular-devkit/schematics': 13.3.11(chokidar@3.6.0)
       '@nestjs/common': 10.3.10(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
-      '@prisma/client': 5.16.1(prisma@5.16.1)
+      '@prisma/client': 5.17.0(prisma@5.16.1)
       '@schematics/angular': 13.3.11(chokidar@3.6.0)
       prisma: 5.16.1
     transitivePeerDependencies:
@@ -9542,7 +9542,7 @@ snapshots:
 
   prisma-class-generator@0.2.9(prisma@5.16.1):
     dependencies:
-      '@prisma/client': 5.16.1(prisma@5.16.1)
+      '@prisma/client': 5.17.0(prisma@5.16.1)
       '@prisma/generator-helper': 5.16.2
       '@prisma/internals': 5.16.2
       change-case: 4.1.2
