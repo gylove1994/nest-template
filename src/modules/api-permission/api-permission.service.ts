@@ -49,10 +49,10 @@ export class ApiPermissionService {
     return apiPermission;
   }
 
-  async update(id: string, updateApiPermissionDto: UpdateApiPermissionDto) {
+  async update(updateApiPermissionDto: UpdateApiPermissionDto) {
     const { roleIds, permissionGroupIds } = updateApiPermissionDto;
     const apiPermission = await this.prisma.apiPermission.update({
-      where: { id },
+      where: { id: updateApiPermissionDto.id },
       data: {
         isPublic: updateApiPermissionDto.isPublic,
         ...(roleIds

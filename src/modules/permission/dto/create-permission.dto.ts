@@ -1,8 +1,8 @@
+import { IsUUIDsALLInDataBase } from '@/commons/decorators/all-in-db.decorator';
+import { IsNotSameNameInDataBase } from '@/commons/decorators/not-same-name.decorator';
 import { Optional } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsString, IsUUID, MaxLength } from 'class-validator';
-import { IsUUIDsALLInDataBase } from '@/commons/pipes/all-in-db.pipe';
-import { IsNotSameNameInDataBase } from '@/commons/pipes/not-same-name.pipe';
 
 export class CreatePermissionDto {
   @IsString()

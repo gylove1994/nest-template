@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import {
   ValidationArguments,
@@ -6,7 +7,7 @@ import {
 } from 'class-validator';
 const prisma = new PrismaClient();
 
-export function IsUUIDsALLInDataBase(
+export function IsNotSameNameInDataBase(
   entityName: string,
   validationOptions?: ValidationOptions,
 ) {
@@ -20,17 +21,20 @@ export function IsUUIDsALLInDataBase(
       validator: {
         async validate(value: any, args: ValidationArguments) {
           const [entityName] = args.constraints;
-          const count = await (prisma[entityName] as any).count({
-            where: {
-              id: {
-                in: value,
+          try {
+            const count = await (prisma[entityName] as any).count({
+              where: {
+                name: value,
               },
-            },
-          });
-          return count === value.length;
+            });
+            return count === 0;
+          } catch (e) {
+            Logger.error(`IsNotSameInDataBase query error`, e);
+            return false;
+          }
         },
         defaultMessage() {
-          return `Some of the ${entityName} entity not found in database`;
+          return `Some name ${entityName} entity is in the database`;
         },
       },
     });

@@ -15,10 +15,15 @@ export type WhereType =
 export type WhereTypeWithMapper<K> = [WhereType, keyof K];
 
 export abstract class PaginationDto<T> {
-  @IsNumber()
+  @IsNumber({
+    allowNaN: false,
+    allowInfinity: false,
+    maxDecimalPlaces: 0,
+  })
   @ApiProperty({
     description: '分页页码',
   })
+  @Min(1)
   @Transform(({ value }) => Number(value))
   page: number;
 
@@ -114,6 +119,15 @@ export abstract class PaginationDto<T> {
     return {
       ...this.buildWhere(props),
       deletedAt: null,
+    };
+  }
+
+  buildResponse<T>(data: T[], total: number) {
+    return {
+      data,
+      total,
+      page: this.page,
+      pageSize: this.pageSize,
     };
   }
 }

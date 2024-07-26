@@ -4,18 +4,20 @@ import { IsOptional, ValidateNested } from 'class-validator';
 import { PaginationDto } from '@/commons/dtos/pagination.dto';
 import { CreatePermissionDto } from './create-permission.dto';
 
+export const CreatePermissionDtoFilterType = PartialType(
+  OmitType(CreatePermissionDto, ['description'] as const),
+);
+
 export class PaginationPermissionDto extends PaginationDto<
   Partial<Omit<CreatePermissionDto, 'description'>>
 > {
   @ValidateNested()
-  @Type(() =>
-    PartialType(OmitType(CreatePermissionDto, ['description'] as const)),
-  )
+  @Type(() => CreatePermissionDtoFilterType)
   @IsOptional()
   @ApiProperty({
-    type: () =>
-      PartialType(OmitType(CreatePermissionDto, ['description'] as const)),
+    type: CreatePermissionDtoFilterType,
     description: '过滤条件',
+    required: false,
   })
   filter?: Partial<Omit<CreatePermissionDto, 'description'>>;
 }

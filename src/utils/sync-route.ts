@@ -40,6 +40,11 @@ export async function syncRoute(app: INestApplication) {
       },
     },
   });
+  Logger.log(`Deleted ${deletedRes.count} routes`, 'SyncRoute');
+  Logger.log(deletedRoutes, 'SyncRoute');
+  Logger.log(`Creating ${newRoutes.length} routes`, 'SyncRoute');
+  Logger.log(newRoutes, 'SyncRoute');
+  Logger.log('Syncing routes', 'SyncRoute');
   const createdRes = await prisma.apiPermission.createMany({
     data: newRoutes.map((route) => ({
       path: route.path,

@@ -1,53 +1,46 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { PermissionService } from './permission.service';
 import { CreatePermissionDto } from './dto/create-permission.dto';
 import { UpdatePermissionDto } from './dto/update-permission.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PaginationPermissionDto } from './dto/pagination-permission.dto';
+import { PermissionIdExistDto } from './dto/permission-id-exist.dto';
 
 @ApiTags('权限字符管理')
 @Controller('permission')
 export class PermissionController {
   constructor(private readonly permissionService: PermissionService) {}
 
-  @Post()
+  @Post('create')
   @ApiOperation({ summary: '创建权限字符' })
   create(@Body() createPermissionDto: CreatePermissionDto) {
     return this.permissionService.create(createPermissionDto);
   }
 
-  @Get()
+  @Post('list')
   @ApiOperation({ summary: '获取所有权限字符' })
   findAll(@Body() paginate: PaginationPermissionDto) {
     return this.permissionService.findAll(paginate);
   }
 
-  @Get(':id')
+  @Get('detail')
   @ApiOperation({ summary: '获取单个权限字符' })
-  findOne(@Param('id') id: string) {
-    return this.permissionService.findOne(id);
+  findOne(@Query() dto: PermissionIdExistDto) {
+    return this.permissionService.findOne(dto.id);
   }
 
-  @Patch(':id')
+  @Post('update')
   @ApiOperation({ summary: '更新权限字符' })
-  update(
-    @Param('id') id: string,
-    @Body() updatePermissionDto: UpdatePermissionDto,
-  ) {
-    return this.permissionService.update(id, updatePermissionDto);
+  update(@Body() updatePermissionDto: UpdatePermissionDto) {
+    return this.permissionService.update(
+      updatePermissionDto.id,
+      updatePermissionDto,
+    );
   }
 
-  @Delete(':id')
+  @Post('remove')
   @ApiOperation({ summary: '删除权限字符' })
-  remove(@Param('id') id: string) {
-    return this.permissionService.remove(id);
+  remove(@Body() dto: PermissionIdExistDto) {
+    return this.permissionService.remove(dto.id);
   }
 }
