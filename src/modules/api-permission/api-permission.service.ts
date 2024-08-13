@@ -2,49 +2,41 @@ import { Injectable } from '@nestjs/common';
 import { UpdateApiPermissionDto } from './dto/update-api-permission.dto';
 import { PrismaService } from 'nestjs-prisma';
 import { PaginationApiPermissionDto } from './dto/pagination-api-permission.dto';
+import { ApiPermission } from '@/_gen/prisma-class/api_permission';
+import { dv } from '@/utils/dv';
 
 @Injectable()
 export class ApiPermissionService {
   constructor(private readonly prisma: PrismaService) {}
+
   async findAll(paginationDto: PaginationApiPermissionDto) {
+    const where = paginationDto.buildWhere<ApiPermission>({
+      props: {
+        name: { type: 'contains' },
+        roleIds: { type: 'sin', mapper: 'roles' },
+        permissionGroupIds: { type: 'sin', mapper: 'apiPermissionGroups' },
+      },
+    });
     const apiPermissions = await this.prisma.apiPermission.findMany({
       include: {
         roles: true,
         apiPermissionGroups: true,
       },
       ...paginationDto.toSkipAndTake(),
-      where: {
-        ...paginationDto.buildWhereWithNoDelete({
-          name: 'contains',
-          roleIds: ['sin', 'roles'],
-          permissionGroupIds: ['sin', 'permissionGroups'],
-        }),
-      },
+      where,
     });
     const total = await this.prisma.apiPermission.count({
-      where: {
-        ...paginationDto.buildWhereWithNoDelete({
-          name: 'contains',
-          roleIds: ['sin', 'roles'],
-          permissionGroupIds: ['sin', 'permissionGroups'],
-        }),
-      },
+      where,
     });
-    return {
-      data: apiPermissions,
-      total,
-      page: paginationDto.page,
-      pageSize: paginationDto.pageSize,
-    };
+    return paginationDto.buildResponse(apiPermissions, total);
   }
 
   async findOne(id: string) {
     const apiPermission = await this.prisma.apiPermission.findUnique({
-      where: { id },
       include: {
         roles: true,
-        apiPermissionGroups: true,
       },
+      where: { id },
     });
     return apiPermission;
   }
@@ -55,20 +47,16 @@ export class ApiPermissionService {
       where: { id: updateApiPermissionDto.id },
       data: {
         isPublic: updateApiPermissionDto.isPublic,
-        ...(roleIds
-          ? {
-              roles: {
-                connect: roleIds.map((id) => ({ id })),
-              },
-            }
-          : {}),
-        ...(permissionGroupIds
-          ? {
-              permissionGroups: {
-                connect: permissionGroupIds.map((id) => ({ id })),
-              },
-            }
-          : {}),
+        ...dv(roleIds, {
+          roles: {
+            connect: roleIds.map((id) => ({ id })),
+          },
+        }),
+        ...dv(permissionGroupIds, {
+          permissionGroups: {
+            connect: permissionGroupIds.map((id) => ({ id })),
+          },
+        }),
       },
       include: {
         roles: true,

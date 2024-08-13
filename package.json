@@ -61,6 +61,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
     "nest-winston": "^1.10.0",
+    "nestjs-i18n": "^10.4.5",
     "nestjs-prisma": "^0.23.0",
     "prisma-class-generator": "^0.2.9",
     "reflect-metadata": "^0.2.0",

@@ -4,7 +4,7 @@ import { IsBoolean, IsOptional, ValidateNested } from 'class-validator';
 import { Role } from '@/_gen/prisma-class/role';
 import { PaginationDto } from '@/commons/dtos/pagination.dto';
 
-export class PaginationRoleDto extends PaginationDto<Pick<Role, 'name'>> {
+export class PaginationRoleDto extends PaginationDto {
   @ValidateNested()
   @Type(() => PickType(Role, ['name']))
   @IsOptional()

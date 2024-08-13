@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { APP_CONFIG_TOKEN, IAppConfig } from './configs/app-config';
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import { syncRoute } from './utils/sync-route';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import helmet from 'helmet';
@@ -13,13 +13,6 @@ import * as cookieParser from 'cookie-parser';
 export async function bootstrap(app: NestExpressApplication) {
   const configService = app.get(ConfigService);
   const appConfig = configService.get<IAppConfig>(APP_CONFIG_TOKEN);
-  app.useGlobalPipes(
-    new ValidationPipe({
-      disableErrorMessages: appConfig.env === 'production',
-      whitelist: true,
-      transform: true,
-    }),
-  );
   if (appConfig.env !== 'production') {
     app.enableCors();
   }

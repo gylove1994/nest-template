@@ -3,11 +3,8 @@ import { Type } from 'class-transformer';
 import { IsOptional, ValidateNested } from 'class-validator';
 import { User } from '@/_gen/prisma-class/user';
 import { PaginationDto } from '@/commons/dtos/pagination.dto';
-import { PickByArray } from '@/utils/omit-by-array';
 
-export class PaginationUserDto extends PaginationDto<
-  PickByArray<User, ['id', 'email', 'name', 'status', 'roleId']>
-> {
+export class PaginationUserDto extends PaginationDto {
   @ValidateNested()
   @Type(() => PickType(User, ['id', 'email', 'name', 'status']))
   @IsOptional()
@@ -15,5 +12,5 @@ export class PaginationUserDto extends PaginationDto<
     description: '过滤条件',
     type: PickType(User, ['id', 'email', 'name', 'status']),
   })
-  filter?: PickByArray<User, ['id', 'email', 'name', 'status', 'roleId']>;
+  filter?: Pick<User, 'id' | 'email' | 'name' | 'status' | 'roleId'>;
 }

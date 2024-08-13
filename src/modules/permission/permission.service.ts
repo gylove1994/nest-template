@@ -37,29 +37,28 @@ export class PermissionService {
         permissionGroups: true,
       },
       ...paginate.toSkipAndTake(),
-      where: {
-        ...paginate.buildWhereWithNoDelete<Permission>({
-          name: 'contains',
-          roleIds: ['sin', 'roles'],
-          permissionGroupIds: ['sin', 'permissionGroups'],
-        }),
-      },
+      where: paginate.buildWhere({
+        props: {
+          name: { type: 'contains' },
+          roleIds: { type: 'sin', mapper: 'roles' },
+          permissionGroupIds: { type: 'sin', mapper: 'permissionGroups' },
+        },
+        withDeleted: false,
+      }),
     });
+
     const total = await this.prisma.permission.count({
-      where: {
-        ...paginate.buildWhereWithNoDelete<Permission>({
-          name: 'contains',
-          roleIds: ['sin', 'roles'],
-          permissionGroupIds: ['sin', 'permissionGroups'],
-        }),
-      },
+      where: paginate.buildWhere({
+        props: {
+          name: { type: 'contains' },
+          roleIds: { type: 'sin', mapper: 'roles' },
+          permissionGroupIds: { type: 'sin', mapper: 'permissionGroups' },
+        },
+        withDeleted: false,
+      }),
     });
-    return {
-      data: permissions,
-      total,
-      page: paginate.page,
-      pageSize: paginate.pageSize,
-    };
+
+    return paginate.buildResponse(permissions, total);
   }
 
   async findOne(id: string) {

@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import { IsInt, IsNumber, Max, Min } from 'class-validator';
+import { cloneDeep } from 'lodash';
 
 export type WhereType =
   | 'in'
@@ -12,9 +13,22 @@ export type WhereType =
   | 'gte'
   | 'sin';
 
-export type WhereTypeWithMapper<K> = [WhereType, keyof K];
+export type ModType = 'and' | 'or';
 
-export abstract class PaginationDto<T> {
+export type WhereTypeOptions<T> = {
+  type: WhereType;
+  mapper?: keyof T;
+  mode?: ModType;
+};
+
+export interface BuildWhereOptions<K, T> {
+  props: {
+    [key in keyof Partial<Omit<K, keyof PaginationDto>>]: WhereTypeOptions<T>;
+  };
+  withDeleted?: boolean | keyof Omit<K, keyof PaginationDto>;
+}
+
+export class PaginationDto {
   @IsNumber({
     allowNaN: false,
     allowInfinity: false,
@@ -41,8 +55,6 @@ export abstract class PaginationDto<T> {
   @Transform(({ value }) => Number(value))
   pageSize: number;
 
-  abstract filter?: T;
-
   toSkipAndTake() {
     return {
       skip: (this.page - 1) * this.pageSize,
@@ -50,76 +62,35 @@ export abstract class PaginationDto<T> {
     };
   }
 
-  buildWhere<K = any>(props: {
-    [key in keyof T]: WhereType | WhereTypeWithMapper<K>;
-  }) {
-    const where: any = {};
-    for (const key in props) {
-      if (props.hasOwnProperty(key)) {
-        const value = this.filter[key];
-        const [type, mapper] = Array.isArray(props[key])
-          ? (props[key] as WhereTypeWithMapper<K>)
-          : [props[key] as WhereType, key];
-        if (value) {
-          switch (type) {
-            case 'in':
-              where[mapper] = {
-                in: value,
-              };
-              break;
-            case 'contains':
-              where[mapper] = {
-                contains: value,
-              };
-              break;
-            case 'eq':
-              where[mapper] = {
-                equals: value,
-              };
-              break;
-            case 'lt':
-              where[mapper] = {
-                lt: value,
-              };
-              break;
-            case 'lte':
-              where[mapper] = {
-                lte: value,
-              };
-              break;
-            case 'gt':
-              where[mapper] = {
-                gt: value,
-              };
-              break;
-            case 'gte':
-              where[mapper] = {
-                gte: value,
-              };
-              break;
-            case 'sin':
-              where[mapper] = {
-                some: {
-                  id: {
-                    in: value,
-                  },
-                },
-              };
-              break;
-          }
-        }
+  buildWhere<K = any>(options: BuildWhereOptions<this, K>) {
+    let where: any = {};
+    const paginationValue = this.getPaginationValue();
+    const ands: any[] = Object.keys(options.props)
+      .filter((key) => {
+        return options.props[key].mode === 'and';
+      })
+      .map((key) =>
+        this.whereBuilder(options.props[key], key, paginationValue[key]),
+      );
+    const ors: any[] = Object.keys(options.props)
+      .filter((key) => {
+        return options.props[key].mode === 'or';
+      })
+      .map((key) =>
+        this.whereBuilder(options.props[key], key, paginationValue[key]),
+      );
+    where.OR = ors;
+    where = { ...where, ...ands };
+    if (options.withDeleted) {
+      if (typeof options.withDeleted === 'boolean') {
+        where.deleted = options.withDeleted;
+      } else {
+        where.deleted = {
+          eq: paginationValue[options.withDeleted],
+        };
       }
     }
     return where;
-  }
-
-  buildWhereWithNoDelete<K = any>(props: {
-    [key in keyof T]: WhereType | WhereTypeWithMapper<K>;
-  }) {
-    return {
-      ...this.buildWhere(props),
-      deletedAt: null,
-    };
   }
 
   buildResponse<T>(data: T[], total: number) {
@@ -130,4 +101,72 @@ export abstract class PaginationDto<T> {
       pageSize: this.pageSize,
     };
   }
+
+  private whereBuilder<T>(wto: WhereTypeOptions<T>, key: string, value: any) {
+    switch (wto.type) {
+      case 'in':
+        return {
+          [wto.mapper ?? key]: {
+            in: value,
+          },
+        };
+      case 'contains':
+        return {
+          [wto.mapper ?? key]: {
+            contains: value,
+          },
+        };
+      case 'eq':
+        return {
+          [wto.mapper ?? key]: value,
+        };
+      case 'lt':
+        return {
+          [wto.mapper ?? key]: {
+            lt: value,
+          },
+        };
+      case 'lte':
+        return {
+          [wto.mapper ?? key]: {
+            lte: value,
+          },
+        };
+      case 'gt':
+        return {
+          [wto.mapper ?? key]: {
+            gt: value,
+          },
+        };
+      case 'gte':
+        return {
+          [wto.mapper ?? key]: {
+            gte: value,
+          },
+        };
+      case 'sin':
+        return {
+          [wto.mapper ?? key]: {
+            some: {
+              id: {
+                in: value,
+              },
+            },
+          },
+        };
+    }
+  }
+
+  private getPaginationValue() {
+    const clone = cloneDeep(this);
+    for (const key in PaginationDto.templatePaginationDtoInstance) {
+      if (PaginationDto.templatePaginationDtoInstance.hasOwnProperty(key)) {
+        delete clone[key];
+      }
+    }
+    return clone as Omit<this, keyof PaginationDto>;
+  }
+
+  // type space to value space
+  static readonly templatePaginationDtoInstance = new PaginationDto();
 }
