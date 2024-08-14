@@ -1,14 +1,10 @@
-import { PickType } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import { IsBoolean, IsOptional, ValidateNested } from 'class-validator';
-import { Role } from '@/_gen/prisma-class/role';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
 import { PaginationDto } from '@/commons/dtos/pagination.dto';
 
 export class PaginationRoleDto extends PaginationDto {
-  @ValidateNested()
-  @Type(() => PickType(Role, ['name']))
+  @IsString()
   @IsOptional()
-  filter?: Pick<Role, 'name'>;
+  name?: string;
 
   @IsOptional()
   @IsBoolean()

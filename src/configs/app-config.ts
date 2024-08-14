@@ -13,7 +13,7 @@ export const APP_CONFIG_TOKEN = 'app';
 
 export default registerAs(APP_CONFIG_TOKEN, () => {
   return {
-    port: parseInt(process.env.PORT, 10) || 3000,
+    port: parseInt(process.env.APP_PORT, 10) || 3000,
     env: process.env.NODE_ENV || 'development',
     appName: process.env.APP_NAME || 'NestJS App',
     appDescription: process.env.APP_DESCRIPTION || 'NestJS App Description',

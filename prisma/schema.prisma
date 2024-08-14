@@ -20,123 +20,54 @@ datasource db {
 }
 
 model User {
-  id           String         @id @default(uuid())
-  email        String         @unique
-  name         String?
-  password     String
-  status       UserStatus     @default(ACTIVE)
-  profile      Profile?
-  session      Session[]
-  role         Role           @relation(fields: [roleId], references: [id])
-  roleId       String
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  deletedAt    DateTime?
-  operationLog OperationLog[]
+  id              String           @id @default(cuid())
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  accessCode      String
+  role            Role
+  assessmentTasks AssessmentTask[]
 }
 
-enum UserStatus {
-  ACTIVE
-  INACTIVE
+enum Role {
+  ADMIN
+  ASSESSOR
 }
 
-enum RoleStatus {
-  ACTIVE
-  INACTIVE
+model Project {
+  id             String           @id @default(cuid())
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  name           String
+  assessmentTasks AssessmentTask[]
 }
 
-model Profile {
-  id        String    @id @default(uuid())
-  bio       String?
-  avatar    String?
-  phone     String?
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String    @unique
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+model AssessmentTask {
+  id         String       @id @default(cuid())
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  name       String
+  User       User         @relation(fields: [userId], references: [id])
+  userId     String
+  project    Project?     @relation(fields: [projectId], references: [id])
+  projectId  String?
+  Assessment Assessment[]
 }
 
-model Session {
-  id          String    @id @default(uuid())
-  token       String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  deletedAt   DateTime?
-  expiresAt   DateTime
-  description String?
-  user        User      @relation(fields: [userId], references: [id])
-  userId      String
+model Assessment {
+  id               String               @id @default(cuid())
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  questions        AssessmentQuestion[]
+  AssessmentTask   AssessmentTask?      @relation(fields: [assessmentTaskId], references: [id])
+  assessmentTaskId String?
 }
 
-model Role {
-  id             String          @id @default(uuid())
-  name           String          @unique
-  description    String?
-  user           User[]
-  permissions    Permission[]
-  apiPermissions ApiPermission[]
-  status         RoleStatus      @default(ACTIVE)
-  deletable      Boolean         @default(true)
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  deletedAt      DateTime?
-}
-
-model Permission {
-  id               String            @id @default(uuid())
-  name             String            @unique
-  description      String?
-  roles            Role[]
-  permissionGroups PermissionGroup[]
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
-  deletedAt        DateTime?
-}
-
-model PermissionGroup {
-  id          String       @id @default(uuid())
-  name        String
-  description String?
-  permissions Permission[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  deletedAt   DateTime?
-}
-
-model ApiPermission {
-  id                  String               @id @default(uuid())
-  path                String
-  method              String
-  description         String?
-  isPublic            Boolean              @default(false)
-  createdAt           DateTime             @default(now())
-  updatedAt           DateTime             @updatedAt
-  apiPermissionGroups ApiPermissionGroup[]
-  operationLogs       OperationLog[]
-  roles               Role[]
-
-  @@unique([path, method])
-}
-
-model ApiPermissionGroup {
-  id          String          @id @default(uuid())
-  name        String
-  description String?
-  permissions ApiPermission[]
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
-  deletedAt   DateTime?
-}
-
-model OperationLog {
-  id              String        @id @default(uuid())
-  userId          String
-  user            User          @relation(fields: [userId], references: [id])
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  deletedAt       DateTime?
-  apiPermission   ApiPermission @relation(fields: [apiPermissionId], references: [id])
-  apiPermissionId String
-  data            String
+model AssessmentQuestion {
+  id           String      @id @default(cuid())
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  question     String
+  score        Int
+  Assessment   Assessment? @relation(fields: [assessmentId], references: [id])
+  assessmentId String?
 }

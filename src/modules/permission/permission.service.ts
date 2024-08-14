@@ -3,6 +3,7 @@ import { CreatePermissionDto } from './dto/create-permission.dto';
 import { UpdatePermissionDto } from './dto/update-permission.dto';
 import { PrismaService } from 'nestjs-prisma';
 import { PaginationPermissionDto } from './dto/pagination-permission.dto';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class PermissionService {
@@ -30,31 +31,25 @@ export class PermissionService {
   }
 
   async findAll(paginate: PaginationPermissionDto) {
+    const where: Prisma.PermissionWhereInput = paginate.buildWhere({
+      props: {
+        name: { type: 'contains' },
+        roleIds: { type: 'sin', mapper: 'roles' },
+        permissionGroupIds: { type: 'sin', mapper: 'permissionGroups' },
+      },
+      withDeleted: false,
+    });
     const permissions = await this.prisma.permission.findMany({
       include: {
         roles: true,
         permissionGroups: true,
       },
       ...paginate.toSkipAndTake(),
-      where: paginate.buildWhere({
-        props: {
-          name: { type: 'contains' },
-          roleIds: { type: 'sin', mapper: 'roles' },
-          permissionGroupIds: { type: 'sin', mapper: 'permissionGroups' },
-        },
-        withDeleted: false,
-      }),
+      where,
     });
 
     const total = await this.prisma.permission.count({
-      where: paginate.buildWhere({
-        props: {
-          name: { type: 'contains' },
-          roleIds: { type: 'sin', mapper: 'roles' },
-          permissionGroupIds: { type: 'sin', mapper: 'permissionGroups' },
-        },
-        withDeleted: false,
-      }),
+      where,
     });
 
     return paginate.buildResponse(permissions, total);

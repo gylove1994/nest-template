@@ -14,7 +14,7 @@ import { HttpModule } from '@nestjs/axios';
 import { HeaderResolver, I18nModule, I18nService } from 'nestjs-i18n';
 import * as path from 'path';
 import { ValidationI18nPipe } from './commons/pipes/validation-I18n-pipe';
-import { DBValidationPipe } from './utils/DBValidation';
+import { DBValidationPipe } from './commons/slices/DBValidation';
 
 const envFilePath = process.env.NODE_ENV;
 @Module({
@@ -64,7 +64,7 @@ const envFilePath = process.env.NODE_ENV;
       ) => {
         return [
           new ValidationPipe({
-            disableErrorMessages: configService.get('env') === 'production',
+            disableErrorMessages: false,
             whitelist: true,
             transform: true,
           }),

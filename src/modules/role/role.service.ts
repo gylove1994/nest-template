@@ -3,6 +3,8 @@ import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { PrismaService } from 'nestjs-prisma';
 import { PaginationRoleDto } from './dto/pagination-role.dto';
+import { Role } from '@/_gen/prisma-class/role';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class RoleService {
@@ -55,7 +57,11 @@ export class RoleService {
 
   async findAll(dto: PaginationRoleDto) {
     if (dto.all) {
-      const c = await this.prisma.role.count();
+      const total = await this.prisma.role.count({
+        where: {
+          deletedAt: null,
+        },
+      });
       const roles = await this.prisma.role.findMany({
         include: {
           apiPermissions: true,
@@ -65,32 +71,30 @@ export class RoleService {
           deletedAt: null,
         },
       });
-      return { total: c, page: 1, pageSize: c, data: roles };
+      return dto.buildResponse(roles, total);
     }
-    const { page, pageSize } = dto;
-    const total = await this.prisma.role.count({
-      where: {
+
+    const where: Prisma.RoleWhereInput = dto.buildWhere<Role>({
+      props: {
         name: {
-          contains: dto.filter?.name,
+          type: 'contains',
         },
-        deletedAt: null,
       },
+      withDeleted: false,
     });
+
+    const total = await this.prisma.role.count({ where });
+
     const roles = await this.prisma.role.findMany({
-      skip: (page - 1) * pageSize,
-      take: pageSize,
+      ...dto.toSkipAndTake(),
+      where,
       include: {
         apiPermissions: true,
         permissions: true,
       },
-      where: {
-        deletedAt: null,
-        name: {
-          contains: dto.filter?.name,
-        },
-      },
     });
-    return { total, page, pageSize, data: roles };
+
+    return dto.buildResponse(roles, total);
   }
 
   async findOne(id: string) {
