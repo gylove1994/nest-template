@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import { IsInt, IsNumber, Max, Min } from 'class-validator';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isEmpty, isNil } from 'lodash';
 
 export type WhereType =
   | 'in'
@@ -17,7 +17,9 @@ export type ModType = 'and' | 'or';
 
 export type WhereTypeOptions<T> = {
   type: WhereType;
+  // 用于映射字段
   mapper?: keyof T;
+  // 默认是 or
   mode?: ModType;
 };
 
@@ -74,13 +76,18 @@ export class PaginationDto {
       );
     const ors: any[] = Object.keys(options.props)
       .filter((key) => {
-        return options.props[key].mode === 'or';
+        return (
+          // 如果 mode 是 or 或者 mode 不存在，则返回 true (即默认是 or)
+          options.props[key].mode === 'or' || isNil(options.props[key].mode)
+        );
       })
-      .map((key) =>
-        this.whereBuilder(options.props[key], key, paginationValue[key]),
-      );
-    where.OR = ors;
-    where = { ...where, ...ands };
+      .map((key) => {
+        console.log(key, 'key');
+        return this.whereBuilder(options.props[key], key, paginationValue[key]);
+      })
+      .filter((item) => !isEmpty(item));
+    where.OR = isEmpty(ors) ? undefined : ors;
+    where = { ...where, ...Object.assign({}, ...ands) };
     if (options.withDeleted) {
       if (typeof options.withDeleted === 'boolean') {
         where.deleted = options.withDeleted;
@@ -103,6 +110,10 @@ export class PaginationDto {
   }
 
   private whereBuilder<T>(wto: WhereTypeOptions<T>, key: string, value: any) {
+    console.log(value, 'value');
+    if (value === undefined) {
+      return {};
+    }
     switch (wto.type) {
       case 'in':
         return {

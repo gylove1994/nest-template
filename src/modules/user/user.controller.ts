@@ -17,9 +17,9 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Post('list')
+  @Get('list')
   @ApiOperation({ summary: '获取所有用户' })
-  findAll(@Body() paginationDto: PaginationUserDto) {
+  findAll(@Query() paginationDto: PaginationUserDto) {
     return this.userService.findAll(paginationDto);
   }
 

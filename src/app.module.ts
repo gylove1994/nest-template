@@ -3,17 +3,18 @@ import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { IamModule } from './modules/iam/iam.module';
 import appConfig from './configs/app-config';
-import { PrismaModule } from 'nestjs-prisma';
+import { PrismaModule, PrismaService } from 'nestjs-prisma';
 import { UserModule } from './modules/user/user.module';
 import { ApiPermissionModule } from './modules/api-permission/api-permission.module';
 import { PermissionModule } from './modules/permission/permission.module';
 import { RoleModule } from './modules/role/role.module';
 import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
-import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { APP_INTERCEPTOR, APP_PIPE, Reflector } from '@nestjs/core';
 import { HttpModule } from '@nestjs/axios';
-import { I18nModule, I18nService } from 'nestjs-i18n';
-import path from 'path';
+import { HeaderResolver, I18nModule, I18nService } from 'nestjs-i18n';
+import * as path from 'path';
 import { ValidationI18nPipe } from './commons/pipes/validation-I18n-pipe';
+import { DBValidationPipe } from './utils/DBValidation';
 
 const envFilePath = process.env.NODE_ENV;
 @Module({
@@ -36,6 +37,7 @@ const envFilePath = process.env.NODE_ENV;
         path: path.join(__dirname, '/i18n/'),
         watch: true,
       },
+      resolvers: [new HeaderResolver(['x-lang'])],
     }),
     IamModule,
     UserModule,
@@ -54,17 +56,23 @@ const envFilePath = process.env.NODE_ENV;
     },
     {
       provide: APP_PIPE,
-      useFactory: (i18n: I18nService, configService: ConfigService) => {
+      useFactory: (
+        i18n: I18nService,
+        configService: ConfigService,
+        prismaService: PrismaService,
+        reflector: Reflector,
+      ) => {
         return [
           new ValidationPipe({
             disableErrorMessages: configService.get('env') === 'production',
             whitelist: true,
             transform: true,
           }),
+          new DBValidationPipe(prismaService, reflector),
           new ValidationI18nPipe(i18n),
         ];
       },
-      inject: [I18nService, ConfigService],
+      inject: [I18nService, ConfigService, PrismaService, Reflector],
     },
   ],
 })

@@ -5,6 +5,8 @@ import {
   createParamDecorator,
   ExecutionContext,
   Injectable,
+  Logger,
+  OnApplicationBootstrap,
   Param,
   type PipeTransform,
   Query,
@@ -70,11 +72,17 @@ export function ValidateInDBByPipe<T>(
 }
 
 @Injectable()
-export class DBValidationPipe implements PipeTransform {
+export class DBValidationPipe implements PipeTransform, OnApplicationBootstrap {
   constructor(
     private readonly prisma: PrismaClient,
     private readonly reflector: Reflector,
   ) {}
+
+  private readonly logger = new Logger(DBValidationPipe.name);
+
+  onApplicationBootstrap() {
+    this.logger.log('DBValidationPipe injected', 'DBValidationPipe');
+  }
 
   async transform(value: any, metadata: ArgumentMetadata) {
     // 获取对象的元数据 BEFORE_ALL_DB_VALIDATION_KEY

@@ -1,11 +1,4 @@
-import {
-  ApiProperty,
-  IntersectionType,
-  OmitType,
-  PartialType,
-} from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import { IsOptional, ValidateNested } from 'class-validator';
+import { IntersectionType, OmitType, PartialType } from '@nestjs/swagger';
 import { PaginationDto } from '@/commons/dtos/pagination.dto';
 import { CreatePermissionDto } from './create-permission.dto';
 

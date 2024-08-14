@@ -1,16 +1,31 @@
-import { ApiProperty, PickType } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import { IsOptional, ValidateNested } from 'class-validator';
-import { User } from '@/_gen/prisma-class/user';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsOptional, IsString, IsUUID, IsEnum } from 'class-validator';
 import { PaginationDto } from '@/commons/dtos/pagination.dto';
+import { UserStatus } from '@prisma/client';
 
 export class PaginationUserDto extends PaginationDto {
-  @ValidateNested()
-  @Type(() => PickType(User, ['id', 'email', 'name', 'status']))
   @IsOptional()
-  @ApiProperty({
-    description: '过滤条件',
-    type: PickType(User, ['id', 'email', 'name', 'status']),
-  })
-  filter?: Pick<User, 'id' | 'email' | 'name' | 'status' | 'roleId'>;
+  @IsUUID()
+  @ApiProperty({ description: '用户ID', required: false })
+  id?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({ description: '用户邮箱', required: false })
+  email?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({ description: '用户名', required: false })
+  name?: string;
+
+  @IsOptional()
+  @IsEnum(UserStatus)
+  @ApiProperty({ description: '用户状态', enum: UserStatus, required: false })
+  status?: UserStatus;
+
+  @IsOptional()
+  @IsUUID()
+  @ApiProperty({ description: '角色ID', required: false })
+  roleId?: string;
 }

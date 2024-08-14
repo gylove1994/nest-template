@@ -45,63 +45,31 @@ export class UserService {
   }
 
   async findAll(dto: PaginationUserDto) {
-    const { page, pageSize } = dto;
-    const total = await this.prisma.user.count({
-      where: {
-        deletedAt: null,
-        id: {
-          contains: dto.filter?.id,
-        },
-        email: {
-          contains: dto.filter?.email,
-        },
-        name: {
-          contains: dto.filter?.name,
-        },
-        status: {
-          equals: dto.filter?.status,
-        },
-        roleId: {
-          equals: dto.filter?.roleId,
-        },
+    const where = dto.buildWhere<PaginationUserDto>({
+      props: {
+        id: { type: 'contains' },
+        email: { type: 'contains' },
+        name: { type: 'contains' },
+        status: { type: 'eq' },
+        roleId: { type: 'eq' },
       },
     });
+
+    const total = await this.prisma.user.count({ where });
+
     const users = await this.prisma.user.findMany({
-      skip: (page - 1) * pageSize,
-      take: pageSize,
+      ...dto.toSkipAndTake(),
       include: {
         role: true,
         profile: true,
       },
-      where: {
-        deletedAt: null,
-        id: {
-          contains: dto.filter?.id,
-        },
-        email: {
-          contains: dto.filter?.email,
-        },
-        name: {
-          contains: dto.filter?.name,
-        },
-        status: {
-          equals: dto.filter?.status,
-        },
-        roleId: {
-          equals: dto.filter?.roleId,
-        },
+      where,
+      omit: {
+        password: true,
       },
     });
-    const noPassUsers = users.map((user) => {
-      delete user.password;
-      return user;
-    });
-    return {
-      total,
-      page,
-      pageSize,
-      data: noPassUsers,
-    };
+
+    return dto.buildResponse(users, total);
   }
 
   async findOne(id: string) {
@@ -109,13 +77,15 @@ export class UserService {
       where: {
         id,
       },
+      omit: {
+        password: true,
+      },
       include: {
         role: true,
         profile: true,
         operationLog: true,
       },
     });
-    delete user.password;
     return user;
   }
 
@@ -136,6 +106,9 @@ export class UserService {
       where: {
         id,
       },
+      omit: {
+        password: true,
+      },
       data: {
         name: updateUserDto.name,
         email: updateUserDto.email,
@@ -154,7 +127,6 @@ export class UserService {
         },
       },
     });
-    delete updatedUser.password;
     return updatedUser;
   }
 
