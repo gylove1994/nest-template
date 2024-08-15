@@ -395,8 +395,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="114"
-                                    class="link-to-prism">src/helpers/test-helper.ts:114</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/helpers/test-helper.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -649,13 +649,6 @@ export class TestHelper {
           },
         },
       },
-    });
-    this.cleanUpCallbacks.push(async () &#x3D;&gt; {
-      await this.prismaClient.user.delete({
-        where: {
-          id: user.id,
-        },
-      });
     });
     return user;
   }

@@ -360,11 +360,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Optional } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsUUIDsALLInDataBase } from &#x27;@/commons/decorators/all-in-db.decorator&#x27;;
+import { IsNotSameNameInDataBase } from &#x27;@/commons/decorators/not-same-name.decorator&#x27;;
+import { Optional } from &#x27;@nestjs/common&#x27;;
 import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
 import { IsOptional, IsString, IsUUID, MaxLength } from &#x27;class-validator&#x27;;
-import { IsUUIDsALLInDataBase } from &#x27;@/commons/pipes/all-in-db.pipe&#x27;;
-import { IsNotSameNameInDataBase } from &#x27;@/commons/pipes/not-same-name.pipe&#x27;;
 
 export class CreatePermissionDto {
   @IsString()

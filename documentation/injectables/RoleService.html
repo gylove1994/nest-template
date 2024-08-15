@@ -178,7 +178,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/role/role.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/modules/role/role.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -243,8 +243,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="10"
-                                    class="link-to-prism">src/modules/role/role.service.ts:10</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="12"
+                                    class="link-to-prism">src/modules/role/role.service.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -312,8 +312,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/modules/role/role.service.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/modules/role/role.service.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -381,8 +381,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="96"
-                                    class="link-to-prism">src/modules/role/role.service.ts:96</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/modules/role/role.service.ts:100</a></div>
                         </td>
                     </tr>
 
@@ -450,8 +450,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="159"
-                                    class="link-to-prism">src/modules/role/role.service.ts:159</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="163"
+                                    class="link-to-prism">src/modules/role/role.service.ts:163</a></div>
                         </td>
                     </tr>
 
@@ -519,8 +519,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="112"
-                                    class="link-to-prism">src/modules/role/role.service.ts:112</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/modules/role/role.service.ts:116</a></div>
                         </td>
                     </tr>
 
@@ -589,6 +589,8 @@ import { CreateRoleDto } from &#x27;./dto/create-role.dto&#x27;;
 import { UpdateRoleDto } from &#x27;./dto/update-role.dto&#x27;;
 import { PrismaService } from &#x27;nestjs-prisma&#x27;;
 import { PaginationRoleDto } from &#x27;./dto/pagination-role.dto&#x27;;
+import { Role } from &#x27;@/_gen/prisma-class/role&#x27;;
+import { Prisma } from &#x27;@prisma/client&#x27;;
 
 @Injectable()
 export class RoleService {
@@ -641,7 +643,11 @@ export class RoleService {
 
   async findAll(dto: PaginationRoleDto) {
     if (dto.all) {
-      const c &#x3D; await this.prisma.role.count();
+      const total &#x3D; await this.prisma.role.count({
+        where: {
+          deletedAt: null,
+        },
+      });
       const roles &#x3D; await this.prisma.role.findMany({
         include: {
           apiPermissions: true,
@@ -651,32 +657,30 @@ export class RoleService {
           deletedAt: null,
         },
       });
-      return { total: c, page: 1, pageSize: c, data: roles };
+      return dto.buildResponse(roles, total);
     }
-    const { page, pageSize } &#x3D; dto;
-    const total &#x3D; await this.prisma.role.count({
-      where: {
+
+    const where: Prisma.RoleWhereInput &#x3D; dto.buildWhere&lt;Role&gt;({
+      props: {
         name: {
-          contains: dto.filter?.name,
+          type: &#x27;contains&#x27;,
         },
-        deletedAt: null,
       },
+      withDeleted: false,
     });
+
+    const total &#x3D; await this.prisma.role.count({ where });
+
     const roles &#x3D; await this.prisma.role.findMany({
-      skip: (page - 1) * pageSize,
-      take: pageSize,
+      ...dto.toSkipAndTake(),
+      where,
       include: {
         apiPermissions: true,
         permissions: true,
       },
-      where: {
-        deletedAt: null,
-        name: {
-          contains: dto.filter?.name,
-        },
-      },
     });
-    return { total, page, pageSize, data: roles };
+
+    return dto.buildResponse(roles, total);
   }
 
   async findOne(id: string) {

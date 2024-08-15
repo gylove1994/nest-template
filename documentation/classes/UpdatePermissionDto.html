@@ -128,7 +128,10 @@
                 <h3>Extends</h3>
             </p>
             <p class="comment">
-                        <code>PartialType(CreatePermissionDto)</code>
+                        <code>IntersectionType(
+  PermissionIdExistDto,
+  PartialType(CreatePermissionDto),
+)</code>
             </p>
 
 
@@ -146,10 +149,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType } from &#x27;@nestjs/swagger&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IntersectionType, PartialType } from &#x27;@nestjs/swagger&#x27;;
 import { CreatePermissionDto } from &#x27;./create-permission.dto&#x27;;
+import { PermissionIdExistDto } from &#x27;./permission-id-exist.dto&#x27;;
 
-export class UpdatePermissionDto extends PartialType(CreatePermissionDto) {}
+export class UpdatePermissionDto extends IntersectionType(
+  PermissionIdExistDto,
+  PartialType(CreatePermissionDto),
+) {}
 </code></pre>
     </div>
 </div>

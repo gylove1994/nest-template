@@ -143,14 +143,20 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#findAll" >findAll</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#findOne" >findOne</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                 <a href="#update" >update</a>
@@ -180,6 +186,8 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -196,14 +204,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@ApiOperation({summary: &#x27;获取所有api权限&#x27;})<br /></code>
+                    <code>@Get(&#x27;list&#x27;)<br />@HttpCode(200)<br />@ApiOperation({summary: &#x27;获取所有api权限&#x27;})<br />@ApiOkResponse({type: PaginationApiPermissionResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="15"
-                                    class="link-to-prism">src/modules/api-permission/api-permission.controller.ts:15</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/modules/api-permission/api-permission.controller.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -257,6 +265,8 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>findOne</b></span>
                         <a href="#findOne"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -265,7 +275,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>findOne(dto: <a href="../classes/ApiPermissionIdExistDto.html" target="_self">ApiPermissionIdExistDto</a>)</code>
                 </td>
             </tr>
 
@@ -273,14 +283,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;获取单个api权限&#x27;})<br /></code>
+                    <code>@Get(&#x27;detail&#x27;)<br />@HttpCode(200)<br />@ApiOperation({summary: &#x27;获取单个api权限&#x27;})<br />@ApiOkResponse({type: ApiPermission})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="21"
-                                    class="link-to-prism">src/modules/api-permission/api-permission.controller.ts:21</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/modules/api-permission/api-permission.controller.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -301,9 +311,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>dto</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../classes/ApiPermissionIdExistDto.html" target="_self" >ApiPermissionIdExistDto</a></code>
                                             </td>
 
                                             <td>
@@ -334,6 +344,8 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>update</b></span>
                         <a href="#update"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -342,7 +354,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateApiPermissionDto: <a href="../classes/UpdateApiPermissionDto.html" target="_self">UpdateApiPermissionDto</a>)</code>
+                    <code>update(updateApiPermissionDto: <a href="../classes/UpdateApiPermissionDto.html" target="_self">UpdateApiPermissionDto</a>)</code>
                 </td>
             </tr>
 
@@ -350,14 +362,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;更新api权限&#x27;})<br /></code>
+                    <code>@Post(&#x27;update&#x27;)<br />@HttpCode(200)<br />@ApiOperation({summary: &#x27;更新api权限&#x27;})<br />@ApiOkResponse({type: ApiPermission})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="27"
-                                    class="link-to-prism">src/modules/api-permission/api-permission.controller.ts:27</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/modules/api-permission/api-permission.controller.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -377,18 +389,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
                                         <tr>
                                                 <td>updateApiPermissionDto</td>
                                             <td>
@@ -420,36 +420,50 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PaginationApiPermissionDto } from &#x27;./dto/pagination-api-permission.dto&#x27;;
-import { Controller, Get, Body, Patch, Param } from &#x27;@nestjs/common&#x27;;
+import { Controller, Get, Body, Post, Query, HttpCode } from &#x27;@nestjs/common&#x27;;
 import { ApiPermissionService } from &#x27;./api-permission.service&#x27;;
 
 import { UpdateApiPermissionDto } from &#x27;./dto/update-api-permission.dto&#x27;;
-import { ApiOperation, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import {
+  ApiOperation,
+  ApiOkResponse,
+  ApiTags,
+  ApiExtraModels,
+  ApiBearerAuth,
+} from &#x27;@nestjs/swagger&#x27;;
+import { ApiPermissionIdExistDto } from &#x27;./dto/api-permission-id-exist.dto&#x27;;
+import { PaginationApiPermissionResponseDto } from &#x27;./types/pagination-api-permission.type&#x27;;
+import { ApiPermission } from &#x27;@/_gen/prisma-class/api_permission&#x27;;
 
 @ApiTags(&#x27;api权限管理&#x27;)
 @Controller(&#x27;api-permission&#x27;)
+@ApiBearerAuth()
+@ApiExtraModels(ApiPermission, PaginationApiPermissionResponseDto)
 export class ApiPermissionController {
   constructor(private readonly apiPermissionService: ApiPermissionService) {}
 
-  @Get()
+  @Get(&#x27;list&#x27;)
+  @HttpCode(200)
   @ApiOperation({ summary: &#x27;获取所有api权限&#x27; })
-  findAll(@Body() paginationDto: PaginationApiPermissionDto) {
+  @ApiOkResponse({ type: PaginationApiPermissionResponseDto })
+  findAll(@Query() paginationDto: PaginationApiPermissionDto) {
     return this.apiPermissionService.findAll(paginationDto);
   }
 
-  @Get(&#x27;:id&#x27;)
+  @Get(&#x27;detail&#x27;)
+  @HttpCode(200)
   @ApiOperation({ summary: &#x27;获取单个api权限&#x27; })
-  findOne(@Param(&#x27;id&#x27;) id: string) {
-    return this.apiPermissionService.findOne(id);
+  @ApiOkResponse({ type: ApiPermission })
+  findOne(@Query() dto: ApiPermissionIdExistDto) {
+    return this.apiPermissionService.findOne(dto.id);
   }
 
-  @Patch(&#x27;:id&#x27;)
+  @Post(&#x27;update&#x27;)
+  @HttpCode(200)
   @ApiOperation({ summary: &#x27;更新api权限&#x27; })
-  update(
-    @Param(&#x27;id&#x27;) id: string,
-    @Body() updateApiPermissionDto: UpdateApiPermissionDto,
-  ) {
-    return this.apiPermissionService.update(id, updateApiPermissionDto);
+  @ApiOkResponse({ type: ApiPermission })
+  update(@Body() updateApiPermissionDto: UpdateApiPermissionDto) {
+    return this.apiPermissionService.update(updateApiPermissionDto);
   }
 }
 </code></pre>

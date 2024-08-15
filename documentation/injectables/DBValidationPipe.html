@@ -91,7 +91,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >ApiPermissionService</li>
+  <li class="breadcrumb-item" >DBValidationPipe</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -115,7 +115,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/api-permission/api-permission.service.ts</code>
+            <code>src/commons/slices/DBValidation.ts</code>
         </p>
 
 
@@ -126,6 +126,22 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#logger" >logger</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -136,16 +152,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#findAll" >findAll</a>
+                                <a href="#onApplicationBootstrap" >onApplicationBootstrap</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findOne" >findOne</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#update" >update</a>
+                                <a href="#transform" >transform</a>
                             </li>
                         </ul>
                     </td>
@@ -165,12 +176,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(prisma: PrismaService)</code>
+<code>constructor(prisma: PrismaClient, reflector: Reflector)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/modules/api-permission/api-permission.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/commons/slices/DBValidation.ts:75</a></div>
                             </td>
                         </tr>
 
@@ -191,7 +202,19 @@
                                                         <td>prisma</td>
                                                   
                                                         <td>
-                                                                    <code>PrismaService</code>
+                                                                    <code>PrismaClient</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>reflector</td>
+                                                  
+                                                        <td>
+                                                                    <code>Reflector</code>
                                                         </td>
                                                   
                                                     <td>
@@ -217,26 +240,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAll"></a>
+                    <a name="onApplicationBootstrap"></a>
                     <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>findAll</b></span>
-                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>onApplicationBootstrap</b></span>
+                        <a href="#onApplicationBootstrap"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(paginationDto: <a href="../classes/PaginationApiPermissionDto.html" target="_self">PaginationApiPermissionDto</a>)</code>
+<code>onApplicationBootstrap()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="12"
-                                    class="link-to-prism">src/modules/api-permission/api-permission.service.ts:12</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/commons/slices/DBValidation.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -244,40 +265,10 @@
             <tr>
                 <td class="col-md-4">
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>paginationDto</td>
-                                            <td>
-                                                            <code><a href="../classes/PaginationApiPermissionDto.html" target="_self" >PaginationApiPermissionDto</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>unknown</code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -286,26 +277,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findOne"></a>
+                    <a name="transform"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>findOne</b></span>
-                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>transform</b></span>
+                        <a href="#transform"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>transform(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, metadata: ArgumentMetadata)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/modules/api-permission/api-permission.service.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/commons/slices/DBValidation.ts:87</a></div>
                         </td>
                     </tr>
 
@@ -326,9 +317,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>value</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                             </td>
 
                                             <td>
@@ -337,67 +328,10 @@
 
 
                                         </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>unknown</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="update"></a>
-                    <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>update</b></span>
-                        <a href="#update"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(updateApiPermissionDto: <a href="../classes/UpdateApiPermissionDto.html" target="_self">UpdateApiPermissionDto</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="44"
-                                    class="link-to-prism">src/modules/api-permission/api-permission.service.ts:44</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
                                         <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>updateApiPermissionDto</td>
+                                                <td>metadata</td>
                                             <td>
-                                                            <code><a href="../classes/UpdateApiPermissionDto.html" target="_self" >UpdateApiPermissionDto</a></code>
+                                                        <code>ArgumentMetadata</code>
                                             </td>
 
                                             <td>
@@ -421,79 +355,208 @@
         </tbody>
     </table>
 </section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logger"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>logger</b></span>
+                        <a href="#logger"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Logger(DBValidationPipe.name)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/commons/slices/DBValidation.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { UpdateApiPermissionDto } from &#x27;./dto/update-api-permission.dto&#x27;;
-import { PrismaService } from &#x27;nestjs-prisma&#x27;;
-import { PaginationApiPermissionDto } from &#x27;./dto/pagination-api-permission.dto&#x27;;
-import { ApiPermission } from &#x27;@/_gen/prisma-class/api_permission&#x27;;
-import { dv } from &#x27;@/utils/dv&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  type ArgumentMetadata,
+  BadRequestException,
+  Body,
+  createParamDecorator,
+  ExecutionContext,
+  Injectable,
+  Logger,
+  OnApplicationBootstrap,
+  Param,
+  type PipeTransform,
+  Query,
+  SetMetadata,
+} from &#x27;@nestjs/common&#x27;;
+import { Reflector } from &#x27;@nestjs/core&#x27;;
+import { type PrismaClient } from &#x27;@prisma/client&#x27;;
+import { isEmpty, isNil } from &#x27;lodash&#x27;;
+
+const BEFORE_ALL_DB_VALIDATION_KEY &#x3D; &#x27;beforeAllDBValidation&#x27;;
+
+const VALIDATE_IN_DB_KEY &#x3D; &#x27;validateInDB&#x27;;
+
+const VALIDATE_IN_DB_OPTIONS_KEY &#x3D; &#x27;validateInDBOptions&#x27;;
+
+type Constructor&lt;T&gt; &#x3D; new (...args: any[]) &#x3D;&gt; T;
+
+type ValidateFunc&lt;T&gt; &#x3D; (
+  data: T,
+  prisma: PrismaClient,
+) &#x3D;&gt; Promise&lt;boolean&gt; | boolean;
+
+type BeforeAllDBValidationFunc&lt;T&gt; &#x3D; (
+  dto: T,
+  prisma: PrismaClient,
+) &#x3D;&gt; Promise&lt;any&gt;;
+
+interface ValidateInDBOptions {
+  message: string;
+}
+
+// 验证完的数据格式，不过似乎会丢失类型，尝试使用 ReturnType&lt;typeof func&gt; 代替？
+export interface ValidateInDBResult&lt;T, K&gt; {
+  dto: T;
+  dbData: K;
+}
+
+export function BeforeAllDBValidation&lt;T&gt;(func: BeforeAllDBValidationFunc&lt;T&gt;) {
+  // 将 func 函数绑定到对象的元数据 BEFORE_ALL_DB_VALIDATION_KEY 上
+  return SetMetadata(BEFORE_ALL_DB_VALIDATION_KEY, func);
+}
+
+export function ValidateInDBByPipe&lt;T&gt;(
+  validateFunc: ValidateFunc&lt;T&gt;,
+  validationOptions: ValidateInDBOptions,
+) {
+  return function (object: object, propertyName: string) {
+    // 将 validateFunc 函数绑定到对象的元数据 VALIDATE_IN_DB_KEY 上
+    Reflect.defineMetadata(
+      VALIDATE_IN_DB_KEY,
+      validateFunc,
+      object.constructor,
+      propertyName,
+    );
+    // 将 validationOptions 绑定到对象的元数据 VALIDATE_IN_DB_OPTIONS_KEY 上
+    Reflect.defineMetadata(
+      VALIDATE_IN_DB_OPTIONS_KEY,
+      validationOptions,
+      object.constructor,
+      propertyName,
+    );
+  };
+}
 
 @Injectable()
-export class ApiPermissionService {
-  constructor(private readonly prisma: PrismaService) {}
+export class DBValidationPipe implements PipeTransform, OnApplicationBootstrap {
+  constructor(
+    private readonly prisma: PrismaClient,
+    private readonly reflector: Reflector,
+  ) {}
 
-  async findAll(paginationDto: PaginationApiPermissionDto) {
-    const where &#x3D; paginationDto.buildWhere&lt;ApiPermission&gt;({
-      props: {
-        name: { type: &#x27;contains&#x27; },
-        roleIds: { type: &#x27;sin&#x27;, mapper: &#x27;roles&#x27; },
-        permissionGroupIds: { type: &#x27;sin&#x27;, mapper: &#x27;apiPermissionGroups&#x27; },
-      },
-    });
-    const apiPermissions &#x3D; await this.prisma.apiPermission.findMany({
-      include: {
-        roles: true,
-        apiPermissionGroups: true,
-      },
-      ...paginationDto.toSkipAndTake(),
-      where,
-    });
-    const total &#x3D; await this.prisma.apiPermission.count({
-      where,
-    });
-    return paginationDto.buildResponse(apiPermissions, total);
+  private readonly logger &#x3D; new Logger(DBValidationPipe.name);
+
+  onApplicationBootstrap() {
+    this.logger.log(&#x27;DBValidationPipe injected&#x27;, &#x27;DBValidationPipe&#x27;);
   }
 
-  async findOne(id: string) {
-    const apiPermission &#x3D; await this.prisma.apiPermission.findUnique({
-      include: {
-        roles: true,
-      },
-      where: { id },
-    });
-    return apiPermission;
-  }
-
-  async update(updateApiPermissionDto: UpdateApiPermissionDto) {
-    const { roleIds, permissionGroupIds } &#x3D; updateApiPermissionDto;
-    const apiPermission &#x3D; await this.prisma.apiPermission.update({
-      where: { id: updateApiPermissionDto.id },
-      data: {
-        isPublic: updateApiPermissionDto.isPublic,
-        ...dv(roleIds, {
-          roles: {
-            connect: roleIds.map((id) &#x3D;&gt; ({ id })),
-          },
-        }),
-        ...dv(permissionGroupIds, {
-          permissionGroups: {
-            connect: permissionGroupIds.map((id) &#x3D;&gt; ({ id })),
-          },
-        }),
-      },
-      include: {
-        roles: true,
-        apiPermissionGroups: true,
-      },
-    });
-    return apiPermission;
+  async transform(value: any, metadata: ArgumentMetadata) {
+    // 获取对象的元数据 BEFORE_ALL_DB_VALIDATION_KEY
+    const beforeAllFunc &#x3D; this.reflector.get&lt;ValidateFunc&lt;any&gt; | undefined&gt;(
+      BEFORE_ALL_DB_VALIDATION_KEY,
+      metadata.metatype ?? Object,
+    );
+    // 如果存在 BEFORE_ALL_DB_VALIDATION_KEY 元数据，则执行该函数
+    if (!isNil(beforeAllFunc)) {
+      // 将 value 和 prisma 作为参数传入 BEFORE_ALL_DB_VALIDATION_KEY 函数
+      const data &#x3D; await beforeAllFunc(value, this.prisma);
+      // 获取对象的所有属性中带有元数据 VALIDATE_IN_DB_KEY 的属性
+      const vP &#x3D; Object.keys(value).map(async (key) &#x3D;&gt; {
+        const func &#x3D; this.reflector.get&lt;ValidateFunc&lt;any&gt; | undefined&gt;(
+          VALIDATE_IN_DB_KEY,
+          (metadata.metatype as Constructor&lt;any&gt;)[key],
+        );
+        // 如果存在 VALIDATE_IN_DB_KEY 元数据，则执行该函数进行验证
+        if (!isNil(func)) {
+          const res &#x3D; await func(data, this.prisma);
+          return { [key]: res };
+        }
+        // 如果不存在 VALIDATE_IN_DB_KEY 元数据，则返回 true
+        return { [key]: true };
+      });
+      // 等待所有属性的验证结果
+      const v &#x3D; await Promise.all(vP);
+      // 将验证结果转换为 Map 对象
+      const resMap &#x3D; new Map(
+        v.map((item) &#x3D;&gt; [Object.keys(item)[0], Object.values(item)[0]]),
+      );
+      // 如果所有属性的验证结果都为 true，则返回 value
+      const isValid &#x3D; [...resMap.values()].every((item) &#x3D;&gt; item);
+      // 如果有属性的验证结果为 false，则抛出 BadRequestException 异常
+      if (!isValid) {
+        const errorMessages &#x3D; [...resMap.entries()]
+          .map(([key, value]) &#x3D;&gt; {
+            if (!value) {
+              const options &#x3D; this.reflector.get&lt;
+                ValidateInDBOptions | undefined
+              &gt;(
+                VALIDATE_IN_DB_OPTIONS_KEY,
+                (metadata.metatype as Constructor&lt;any&gt;)[key],
+              );
+              return options?.message ?? &#x60;数据库验证失败 ${key}&#x60;;
+            }
+            return &#x27;&#x27;;
+          })
+          .filter((item) &#x3D;&gt; !isEmpty(item));
+        throw new BadRequestException(errorMessages);
+      }
+      // 返回 dto 与 数据库查询结果
+      return { dto: value, dbData: data } satisfies ValidateInDBResult&lt;
+        any,
+        any
+      &gt;;
+    }
+    // 如果不存在 BEFORE_ALL_DB_VALIDATION_KEY 元数据，则直接返回 value，dbData 为 null
+    return { dto: value, dbData: null } satisfies ValidateInDBResult&lt;any, any&gt;;
   }
 }
+
+export const DBValidationBody &#x3D; createParamDecorator(
+  (_data: unknown, _ctx: ExecutionContext) &#x3D;&gt; {
+    return Body(DBValidationPipe);
+  },
+);
+
+export const DBValidationParam &#x3D; createParamDecorator(
+  (_data: unknown, _ctx: ExecutionContext) &#x3D;&gt; {
+    return Param(DBValidationPipe);
+  },
+);
+
+export const DBValidationQuery &#x3D; createParamDecorator(
+  (_data: unknown, _ctx: ExecutionContext) &#x3D;&gt; {
+    return Query(DBValidationPipe);
+  },
+);
 </code></pre>
     </div>
 
@@ -537,7 +600,7 @@ export class ApiPermissionService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'ApiPermissionService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'DBValidationPipe.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -140,11 +140,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Abstract</span>
-                                    <span class="modifier">Optional</span>
-                                <a href="#filter" >filter</a>
-                            </li>
-                            <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -159,6 +155,11 @@
                                     <span class="modifier"></span>
                                 <a href="#pageSize" >pageSize</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#templatePaginationDtoInstance" >templatePaginationDtoInstance</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -172,13 +173,21 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#buildResponse" >buildResponse</a>
+                            </li>
+                            <li>
                                 <a href="#buildWhere" >buildWhere</a>
                             </li>
                             <li>
-                                <a href="#buildWhereWithNoDelete" >buildWhereWithNoDelete</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#getPaginationValue" >getPaginationValue</a>
                             </li>
                             <li>
                                 <a href="#toSkipAndTake" >toSkipAndTake</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#whereBuilder" >whereBuilder</a>
                             </li>
                         </ul>
                     </td>
@@ -202,36 +211,9 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="filter"></a>
-                    <span class="name">
-                            <span class="modifier">Abstract</span>
-                            <span class="modifier">Optional</span>
-                        <span ><b>filter</b></span>
-                        <a href="#filter"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>T</code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/commons/dtos/pagination.dto.ts:39</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="page"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
@@ -251,13 +233,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsNumber()<br />@ApiProperty({description: &#x27;分页页码&#x27;})<br />@Transform( &#x3D;&gt; )<br />
+                            @IsNumber({allowNaN: false, allowInfinity: false, maxDecimalPlaces: 0})<br />@ApiProperty({description: &#x27;分页页码&#x27;})<br />@Min(1)<br />@Transform( &#x3D;&gt; )<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/commons/dtos/pagination.dto.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/commons/dtos/pagination.dto.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -298,7 +280,34 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/commons/dtos/pagination.dto.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/commons/dtos/pagination.dto.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="templatePaginationDtoInstance"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>templatePaginationDtoInstance</b></span>
+                        <a href="#templatePaginationDtoInstance"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new PaginationDto()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/commons/dtos/pagination.dto.ts:182</a></div>
                         </td>
                     </tr>
 
@@ -316,6 +325,93 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="buildResponse"></a>
+                    <span class="name">
+                        <span ><b>buildResponse</b></span>
+                        <a href="#buildResponse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>buildResponse(data: T[], total: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/commons/dtos/pagination.dto.ts:103</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                        <code>T[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>total</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{ data: {}; total: number; page: number; pageSize: number; }</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="buildWhere"></a>
                     <span class="name">
                         <span ><b>buildWhere</b></span>
@@ -325,15 +421,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>buildWhere(props)</code>
+<code>buildWhere(options: <a href="../interfaces/BuildWhereOptions.html" target="_self">BuildWhereOptions&lt; | K&gt;</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/commons/dtos/pagination.dto.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/commons/dtos/pagination.dto.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -356,12 +452,16 @@
                                     <thead>
                                         <tr>
                                             <td>Name</td>
+                                                <td>Type</td>
                                             <td>Optional</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>props</td>
+                                                <td>options</td>
+                                            <td>
+                                                            <code><a href="../interfaces/BuildWhereOptions.html" target="_self" >BuildWhereOptions&lt; | K&gt;</a></code>
+                                            </td>
 
                                             <td>
                                                     No
@@ -387,69 +487,37 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="buildWhereWithNoDelete"></a>
+                    <a name="getPaginationValue"></a>
                     <span class="name">
-                        <span ><b>buildWhereWithNoDelete</b></span>
-                        <a href="#buildWhereWithNoDelete"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>getPaginationValue</b></span>
+                        <a href="#getPaginationValue"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>buildWhereWithNoDelete(props)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPaginationValue()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/commons/dtos/pagination.dto.ts:111</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">src/commons/dtos/pagination.dto.ts:171</a></div>
                         </td>
                     </tr>
 
-                    <tr>
-                        <td class="col-md-4">
-                            <b>Type parameters :</b>
-                            <ul class="type-parameters">
-                                    <li>K</li>
-                            </ul>
-                        </td>
-                    </tr>
 
             <tr>
                 <td class="col-md-4">
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>props</td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <b>Returns : </b>        <code><a href="../classes/PaginationDto.html" target="_self" >Omit&lt;this, keyof PaginationDto&gt;</a></code>
 
                         </div>
-                            <div class="io-description">
-                                
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -474,8 +542,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/commons/dtos/pagination.dto.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/commons/dtos/pagination.dto.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -487,6 +555,107 @@
                             <b>Returns : </b>    <code>{ skip: number; take: number; }</code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="whereBuilder"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>whereBuilder</b></span>
+                        <a href="#whereBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>whereBuilder(wto: WhereTypeOptions<T>, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/commons/dtos/pagination.dto.ts:112</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>wto</td>
+                                            <td>
+                                                        <code>WhereTypeOptions&lt;T&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{ [x: string]: any; }</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -504,6 +673,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
 import { Transform } from &#x27;class-transformer&#x27;;
 import { IsInt, IsNumber, Max, Min } from &#x27;class-validator&#x27;;
+import { cloneDeep, isEmpty, isNil } from &#x27;lodash&#x27;;
 
 export type WhereType &#x3D;
   | &#x27;in&#x27;
@@ -515,13 +685,33 @@ export type WhereType &#x3D;
   | &#x27;gte&#x27;
   | &#x27;sin&#x27;;
 
-export type WhereTypeWithMapper&lt;K&gt; &#x3D; [WhereType, keyof K];
+export type ModType &#x3D; &#x27;and&#x27; | &#x27;or&#x27;;
 
-export abstract class PaginationDto&lt;T&gt; {
-  @IsNumber()
+export type WhereTypeOptions&lt;T&gt; &#x3D; {
+  type: WhereType;
+  // 用于映射字段
+  mapper?: keyof T;
+  // 默认是 or
+  mode?: ModType;
+};
+
+export interface BuildWhereOptions&lt;K, T&gt; {
+  props: {
+    [key in keyof Partial&lt;Omit&lt;K, keyof PaginationDto&gt;&gt;]: WhereTypeOptions&lt;T&gt;;
+  };
+  withDeleted?: boolean | keyof Omit&lt;K, keyof PaginationDto&gt;;
+}
+
+export class PaginationDto {
+  @IsNumber({
+    allowNaN: false,
+    allowInfinity: false,
+    maxDecimalPlaces: 0,
+  })
   @ApiProperty({
     description: &#x27;分页页码&#x27;,
   })
+  @Min(1)
   @Transform(({ value }) &#x3D;&gt; Number(value))
   page: number;
 
@@ -539,8 +729,6 @@ export abstract class PaginationDto&lt;T&gt; {
   @Transform(({ value }) &#x3D;&gt; Number(value))
   pageSize: number;
 
-  abstract filter?: T;
-
   toSkipAndTake() {
     return {
       skip: (this.page - 1) * this.pageSize,
@@ -548,77 +736,122 @@ export abstract class PaginationDto&lt;T&gt; {
     };
   }
 
-  buildWhere&lt;K &#x3D; any&gt;(props: {
-    [key in keyof T]: WhereType | WhereTypeWithMapper&lt;K&gt;;
-  }) {
-    const where: any &#x3D; {};
-    for (const key in props) {
-      if (props.hasOwnProperty(key)) {
-        const value &#x3D; this.filter[key];
-        const [type, mapper] &#x3D; Array.isArray(props[key])
-          ? (props[key] as WhereTypeWithMapper&lt;K&gt;)
-          : [props[key] as WhereType, key];
-        if (value) {
-          switch (type) {
-            case &#x27;in&#x27;:
-              where[mapper] &#x3D; {
-                in: value,
-              };
-              break;
-            case &#x27;contains&#x27;:
-              where[mapper] &#x3D; {
-                contains: value,
-              };
-              break;
-            case &#x27;eq&#x27;:
-              where[mapper] &#x3D; {
-                equals: value,
-              };
-              break;
-            case &#x27;lt&#x27;:
-              where[mapper] &#x3D; {
-                lt: value,
-              };
-              break;
-            case &#x27;lte&#x27;:
-              where[mapper] &#x3D; {
-                lte: value,
-              };
-              break;
-            case &#x27;gt&#x27;:
-              where[mapper] &#x3D; {
-                gt: value,
-              };
-              break;
-            case &#x27;gte&#x27;:
-              where[mapper] &#x3D; {
-                gte: value,
-              };
-              break;
-            case &#x27;sin&#x27;:
-              where[mapper] &#x3D; {
-                some: {
-                  id: {
-                    in: value,
-                  },
-                },
-              };
-              break;
-          }
-        }
+  buildWhere&lt;K &#x3D; any&gt;(options: BuildWhereOptions&lt;this, K&gt;) {
+    let where: any &#x3D; {};
+    const paginationValue &#x3D; this.getPaginationValue();
+    const ands: any[] &#x3D; Object.keys(options.props)
+      .filter((key) &#x3D;&gt; {
+        return options.props[key].mode &#x3D;&#x3D;&#x3D; &#x27;and&#x27;;
+      })
+      .map((key) &#x3D;&gt;
+        this.whereBuilder(options.props[key], key, paginationValue[key]),
+      );
+    const ors: any[] &#x3D; Object.keys(options.props)
+      .filter((key) &#x3D;&gt; {
+        return (
+          // 如果 mode 是 or 或者 mode 不存在，则返回 true (即默认是 or)
+          options.props[key].mode &#x3D;&#x3D;&#x3D; &#x27;or&#x27; || isNil(options.props[key].mode)
+        );
+      })
+      .map((key) &#x3D;&gt; {
+        console.log(key, &#x27;key&#x27;);
+        return this.whereBuilder(options.props[key], key, paginationValue[key]);
+      })
+      .filter((item) &#x3D;&gt; !isEmpty(item));
+    where.OR &#x3D; isEmpty(ors) ? undefined : ors;
+    where &#x3D; { ...where, ...Object.assign({}, ...ands) };
+    if (options.withDeleted) {
+      if (typeof options.withDeleted &#x3D;&#x3D;&#x3D; &#x27;boolean&#x27;) {
+        where.deleted &#x3D; options.withDeleted;
+      } else {
+        where.deleted &#x3D; {
+          eq: paginationValue[options.withDeleted],
+        };
       }
     }
     return where;
   }
 
-  buildWhereWithNoDelete&lt;K &#x3D; any&gt;(props: {
-    [key in keyof T]: WhereType | WhereTypeWithMapper&lt;K&gt;;
-  }) {
+  buildResponse&lt;T&gt;(data: T[], total: number) {
     return {
-      ...this.buildWhere(props),
-      deletedAt: null,
+      data,
+      total,
+      page: this.page,
+      pageSize: this.pageSize,
     };
   }
+
+  private whereBuilder&lt;T&gt;(wto: WhereTypeOptions&lt;T&gt;, key: string, value: any) {
+    console.log(value, &#x27;value&#x27;);
+    if (value &#x3D;&#x3D;&#x3D; undefined) {
+      return {};
+    }
+    switch (wto.type) {
+      case &#x27;in&#x27;:
+        return {
+          [wto.mapper ?? key]: {
+            in: value,
+          },
+        };
+      case &#x27;contains&#x27;:
+        return {
+          [wto.mapper ?? key]: {
+            contains: value,
+          },
+        };
+      case &#x27;eq&#x27;:
+        return {
+          [wto.mapper ?? key]: value,
+        };
+      case &#x27;lt&#x27;:
+        return {
+          [wto.mapper ?? key]: {
+            lt: value,
+          },
+        };
+      case &#x27;lte&#x27;:
+        return {
+          [wto.mapper ?? key]: {
+            lte: value,
+          },
+        };
+      case &#x27;gt&#x27;:
+        return {
+          [wto.mapper ?? key]: {
+            gt: value,
+          },
+        };
+      case &#x27;gte&#x27;:
+        return {
+          [wto.mapper ?? key]: {
+            gte: value,
+          },
+        };
+      case &#x27;sin&#x27;:
+        return {
+          [wto.mapper ?? key]: {
+            some: {
+              id: {
+                in: value,
+              },
+            },
+          },
+        };
+    }
+  }
+
+  private getPaginationValue() {
+    const clone &#x3D; cloneDeep(this);
+    for (const key in PaginationDto.templatePaginationDtoInstance) {
+      if (PaginationDto.templatePaginationDtoInstance.hasOwnProperty(key)) {
+        delete clone[key];
+      }
+    }
+    return clone as Omit&lt;this, keyof PaginationDto&gt;;
+  }
+
+  // type space to value space
+  static readonly templatePaginationDtoInstance &#x3D; new PaginationDto();
 }
 </code></pre>
     </div>

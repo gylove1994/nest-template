@@ -393,8 +393,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/modules/user/user.service.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/modules/user/user.service.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -462,8 +462,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="161"
-                                    class="link-to-prism">src/modules/user/user.service.ts:161</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/modules/user/user.service.ts:133</a></div>
                         </td>
                     </tr>
 
@@ -531,8 +531,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="122"
-                                    class="link-to-prism">src/modules/user/user.service.ts:122</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/modules/user/user.service.ts:92</a></div>
                         </td>
                     </tr>
 
@@ -643,63 +643,31 @@ export class UserService {
   }
 
   async findAll(dto: PaginationUserDto) {
-    const { page, pageSize } &#x3D; dto;
-    const total &#x3D; await this.prisma.user.count({
-      where: {
-        deletedAt: null,
-        id: {
-          contains: dto.filter?.id,
-        },
-        email: {
-          contains: dto.filter?.email,
-        },
-        name: {
-          contains: dto.filter?.name,
-        },
-        status: {
-          equals: dto.filter?.status,
-        },
-        roleId: {
-          equals: dto.filter?.roleId,
-        },
+    const where &#x3D; dto.buildWhere&lt;PaginationUserDto&gt;({
+      props: {
+        id: { type: &#x27;contains&#x27; },
+        email: { type: &#x27;contains&#x27; },
+        name: { type: &#x27;contains&#x27; },
+        status: { type: &#x27;eq&#x27; },
+        roleId: { type: &#x27;eq&#x27; },
       },
     });
+
+    const total &#x3D; await this.prisma.user.count({ where });
+
     const users &#x3D; await this.prisma.user.findMany({
-      skip: (page - 1) * pageSize,
-      take: pageSize,
+      ...dto.toSkipAndTake(),
       include: {
         role: true,
         profile: true,
       },
-      where: {
-        deletedAt: null,
-        id: {
-          contains: dto.filter?.id,
-        },
-        email: {
-          contains: dto.filter?.email,
-        },
-        name: {
-          contains: dto.filter?.name,
-        },
-        status: {
-          equals: dto.filter?.status,
-        },
-        roleId: {
-          equals: dto.filter?.roleId,
-        },
+      where,
+      omit: {
+        password: true,
       },
     });
-    const noPassUsers &#x3D; users.map((user) &#x3D;&gt; {
-      delete user.password;
-      return user;
-    });
-    return {
-      total,
-      page,
-      pageSize,
-      data: noPassUsers,
-    };
+
+    return dto.buildResponse(users, total);
   }
 
   async findOne(id: string) {
@@ -707,13 +675,15 @@ export class UserService {
       where: {
         id,
       },
+      omit: {
+        password: true,
+      },
       include: {
         role: true,
         profile: true,
         operationLog: true,
       },
     });
-    delete user.password;
     return user;
   }
 
@@ -734,6 +704,9 @@ export class UserService {
       where: {
         id,
       },
+      omit: {
+        password: true,
+      },
       data: {
         name: updateUserDto.name,
         email: updateUserDto.email,
@@ -752,7 +725,6 @@ export class UserService {
         },
       },
     });
-    delete updatedUser.password;
     return updatedUser;
   }
 

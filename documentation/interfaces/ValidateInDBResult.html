@@ -98,7 +98,7 @@
   <li class="breadcrumb-item">Interfaces</li>
   <li class="breadcrumb-item"
   >
-  IAppConfig</li>
+  ValidateInDBResult</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -122,7 +122,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/configs/app-config.ts</code>
+            <code>src/commons/slices/DBValidation.ts</code>
         </p>
 
 
@@ -141,39 +141,15 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#appDescription" 
+                                        <a href="#dbData" 
 >
-                                            appDescription
+                                            dbData
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#appHost" 
+                                        <a href="#dto" 
 >
-                                            appHost
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#appName" 
->
-                                            appName
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#appVersion" 
->
-                                            appVersion
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#env" 
->
-                                            env
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#port" 
->
-                                            port
+                                            dto
                                         </a>
                                 </li>
                             </ul>
@@ -191,9 +167,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="appDescription"></a>
-                                        <span class="name "><b>appDescription</b>
-                                            <a href="#appDescription">
+                                        <a name="dbData"></a>
+                                        <span class="name "><b>dbData</b>
+                                            <a href="#dbData">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -201,7 +177,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>appDescription:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>dbData:     <code>K</code>
 </code>
                                     </td>
                                 </tr>
@@ -209,7 +185,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>    <code>K</code>
 
                                         </td>
                                     </tr>
@@ -224,9 +200,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="appHost"></a>
-                                        <span class="name "><b>appHost</b>
-                                            <a href="#appHost">
+                                        <a name="dto"></a>
+                                        <span class="name "><b>dto</b>
+                                            <a href="#dto">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -234,7 +210,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>appHost:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>dto:     <code>T</code>
 </code>
                                     </td>
                                 </tr>
@@ -242,139 +218,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="appName"></a>
-                                        <span class="name "><b>appName</b>
-                                            <a href="#appName">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>appName:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="appVersion"></a>
-                                        <span class="name "><b>appVersion</b>
-                                            <a href="#appVersion">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>appVersion:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="env"></a>
-                                        <span class="name "><b>env</b>
-                                            <a href="#env">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>env:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="port"></a>
-                                        <span class="name "><b>port</b>
-                                            <a href="#port">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>port:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <i>Type : </i>    <code>T</code>
 
                                         </td>
                                     </tr>
@@ -390,29 +234,170 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { registerAs } from &#x27;@nestjs/config&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  type ArgumentMetadata,
+  BadRequestException,
+  Body,
+  createParamDecorator,
+  ExecutionContext,
+  Injectable,
+  Logger,
+  OnApplicationBootstrap,
+  Param,
+  type PipeTransform,
+  Query,
+  SetMetadata,
+} from &#x27;@nestjs/common&#x27;;
+import { Reflector } from &#x27;@nestjs/core&#x27;;
+import { type PrismaClient } from &#x27;@prisma/client&#x27;;
+import { isEmpty, isNil } from &#x27;lodash&#x27;;
 
-export interface IAppConfig {
-  port: number;
-  env: string;
-  appName: string;
-  appDescription: string;
-  appVersion: string;
-  appHost: string;
+const BEFORE_ALL_DB_VALIDATION_KEY &#x3D; &#x27;beforeAllDBValidation&#x27;;
+
+const VALIDATE_IN_DB_KEY &#x3D; &#x27;validateInDB&#x27;;
+
+const VALIDATE_IN_DB_OPTIONS_KEY &#x3D; &#x27;validateInDBOptions&#x27;;
+
+type Constructor&lt;T&gt; &#x3D; new (...args: any[]) &#x3D;&gt; T;
+
+type ValidateFunc&lt;T&gt; &#x3D; (
+  data: T,
+  prisma: PrismaClient,
+) &#x3D;&gt; Promise&lt;boolean&gt; | boolean;
+
+type BeforeAllDBValidationFunc&lt;T&gt; &#x3D; (
+  dto: T,
+  prisma: PrismaClient,
+) &#x3D;&gt; Promise&lt;any&gt;;
+
+interface ValidateInDBOptions {
+  message: string;
 }
 
-export const APP_CONFIG_TOKEN &#x3D; &#x27;app&#x27;;
+// 验证完的数据格式，不过似乎会丢失类型，尝试使用 ReturnType&lt;typeof func&gt; 代替？
+export interface ValidateInDBResult&lt;T, K&gt; {
+  dto: T;
+  dbData: K;
+}
 
-export default registerAs(APP_CONFIG_TOKEN, () &#x3D;&gt; {
-  return {
-    port: parseInt(process.env.APP_PORT, 10) || 3000,
-    env: process.env.NODE_ENV || &#x27;development&#x27;,
-    appName: process.env.APP_NAME || &#x27;NestJS App&#x27;,
-    appDescription: process.env.APP_DESCRIPTION || &#x27;NestJS App Description&#x27;,
-    appVersion: process.env.APP_VERSION || &#x27;1.0.0&#x27;,
-    appHost: process.env.APP_HOST || &#x27;localhost&#x27;,
-  } satisfies IAppConfig;
-});
+export function BeforeAllDBValidation&lt;T&gt;(func: BeforeAllDBValidationFunc&lt;T&gt;) {
+  // 将 func 函数绑定到对象的元数据 BEFORE_ALL_DB_VALIDATION_KEY 上
+  return SetMetadata(BEFORE_ALL_DB_VALIDATION_KEY, func);
+}
+
+export function ValidateInDBByPipe&lt;T&gt;(
+  validateFunc: ValidateFunc&lt;T&gt;,
+  validationOptions: ValidateInDBOptions,
+) {
+  return function (object: object, propertyName: string) {
+    // 将 validateFunc 函数绑定到对象的元数据 VALIDATE_IN_DB_KEY 上
+    Reflect.defineMetadata(
+      VALIDATE_IN_DB_KEY,
+      validateFunc,
+      object.constructor,
+      propertyName,
+    );
+    // 将 validationOptions 绑定到对象的元数据 VALIDATE_IN_DB_OPTIONS_KEY 上
+    Reflect.defineMetadata(
+      VALIDATE_IN_DB_OPTIONS_KEY,
+      validationOptions,
+      object.constructor,
+      propertyName,
+    );
+  };
+}
+
+@Injectable()
+export class DBValidationPipe implements PipeTransform, OnApplicationBootstrap {
+  constructor(
+    private readonly prisma: PrismaClient,
+    private readonly reflector: Reflector,
+  ) {}
+
+  private readonly logger &#x3D; new Logger(DBValidationPipe.name);
+
+  onApplicationBootstrap() {
+    this.logger.log(&#x27;DBValidationPipe injected&#x27;, &#x27;DBValidationPipe&#x27;);
+  }
+
+  async transform(value: any, metadata: ArgumentMetadata) {
+    // 获取对象的元数据 BEFORE_ALL_DB_VALIDATION_KEY
+    const beforeAllFunc &#x3D; this.reflector.get&lt;ValidateFunc&lt;any&gt; | undefined&gt;(
+      BEFORE_ALL_DB_VALIDATION_KEY,
+      metadata.metatype ?? Object,
+    );
+    // 如果存在 BEFORE_ALL_DB_VALIDATION_KEY 元数据，则执行该函数
+    if (!isNil(beforeAllFunc)) {
+      // 将 value 和 prisma 作为参数传入 BEFORE_ALL_DB_VALIDATION_KEY 函数
+      const data &#x3D; await beforeAllFunc(value, this.prisma);
+      // 获取对象的所有属性中带有元数据 VALIDATE_IN_DB_KEY 的属性
+      const vP &#x3D; Object.keys(value).map(async (key) &#x3D;&gt; {
+        const func &#x3D; this.reflector.get&lt;ValidateFunc&lt;any&gt; | undefined&gt;(
+          VALIDATE_IN_DB_KEY,
+          (metadata.metatype as Constructor&lt;any&gt;)[key],
+        );
+        // 如果存在 VALIDATE_IN_DB_KEY 元数据，则执行该函数进行验证
+        if (!isNil(func)) {
+          const res &#x3D; await func(data, this.prisma);
+          return { [key]: res };
+        }
+        // 如果不存在 VALIDATE_IN_DB_KEY 元数据，则返回 true
+        return { [key]: true };
+      });
+      // 等待所有属性的验证结果
+      const v &#x3D; await Promise.all(vP);
+      // 将验证结果转换为 Map 对象
+      const resMap &#x3D; new Map(
+        v.map((item) &#x3D;&gt; [Object.keys(item)[0], Object.values(item)[0]]),
+      );
+      // 如果所有属性的验证结果都为 true，则返回 value
+      const isValid &#x3D; [...resMap.values()].every((item) &#x3D;&gt; item);
+      // 如果有属性的验证结果为 false，则抛出 BadRequestException 异常
+      if (!isValid) {
+        const errorMessages &#x3D; [...resMap.entries()]
+          .map(([key, value]) &#x3D;&gt; {
+            if (!value) {
+              const options &#x3D; this.reflector.get&lt;
+                ValidateInDBOptions | undefined
+              &gt;(
+                VALIDATE_IN_DB_OPTIONS_KEY,
+                (metadata.metatype as Constructor&lt;any&gt;)[key],
+              );
+              return options?.message ?? &#x60;数据库验证失败 ${key}&#x60;;
+            }
+            return &#x27;&#x27;;
+          })
+          .filter((item) &#x3D;&gt; !isEmpty(item));
+        throw new BadRequestException(errorMessages);
+      }
+      // 返回 dto 与 数据库查询结果
+      return { dto: value, dbData: data } satisfies ValidateInDBResult&lt;
+        any,
+        any
+      &gt;;
+    }
+    // 如果不存在 BEFORE_ALL_DB_VALIDATION_KEY 元数据，则直接返回 value，dbData 为 null
+    return { dto: value, dbData: null } satisfies ValidateInDBResult&lt;any, any&gt;;
+  }
+}
+
+export const DBValidationBody &#x3D; createParamDecorator(
+  (_data: unknown, _ctx: ExecutionContext) &#x3D;&gt; {
+    return Body(DBValidationPipe);
+  },
+);
+
+export const DBValidationParam &#x3D; createParamDecorator(
+  (_data: unknown, _ctx: ExecutionContext) &#x3D;&gt; {
+    return Param(DBValidationPipe);
+  },
+);
+
+export const DBValidationQuery &#x3D; createParamDecorator(
+  (_data: unknown, _ctx: ExecutionContext) &#x3D;&gt; {
+    return Query(DBValidationPipe);
+  },
+);
 </code></pre>
     </div>
 </div>
@@ -450,7 +435,7 @@ export default registerAs(APP_CONFIG_TOKEN, () &#x3D;&gt; {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'IAppConfig.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ValidateInDBResult.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

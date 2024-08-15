@@ -143,9 +143,11 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#create" >create</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                 <a href="#findAll" >findAll</a>
@@ -153,14 +155,17 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#findOne" >findOne</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#remove" >remove</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                 <a href="#update" >update</a>
@@ -190,6 +195,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>create</b></span>
                         <a href="#create"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -206,14 +212,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br />@ApiOperation({summary: &#x27;创建权限字符&#x27;})<br /></code>
+                    <code>@Post(&#x27;create&#x27;)<br />@ApiOperation({summary: &#x27;创建权限字符&#x27;})<br />@ApiOkResponse({type: Permission})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/modules/permission/permission.controller.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/modules/permission/permission.controller.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -267,6 +273,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -283,14 +290,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@ApiOperation({summary: &#x27;获取所有权限字符&#x27;})<br /></code>
+                    <code>@Get(&#x27;list&#x27;)<br />@ApiOperation({summary: &#x27;获取所有权限字符&#x27;})<br />@ApiOkResponse({type: PaginationPermissionResponse})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/modules/permission/permission.controller.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/modules/permission/permission.controller.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -344,6 +351,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>findOne</b></span>
                         <a href="#findOne"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -352,7 +360,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>findOne(dto: <a href="../classes/PermissionIdExistDto.html" target="_self">PermissionIdExistDto</a>)</code>
                 </td>
             </tr>
 
@@ -360,14 +368,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;获取单个权限字符&#x27;})<br /></code>
+                    <code>@Get(&#x27;detail&#x27;)<br />@ApiOperation({summary: &#x27;获取单个权限字符&#x27;})<br />@ApiOkResponse({type: Permission})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/modules/permission/permission.controller.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/modules/permission/permission.controller.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -388,9 +396,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>dto</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../classes/PermissionIdExistDto.html" target="_self" >PermissionIdExistDto</a></code>
                                             </td>
 
                                             <td>
@@ -421,6 +429,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>remove</b></span>
                         <a href="#remove"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -429,7 +438,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>remove(dto: <a href="../classes/PermissionIdExistDto.html" target="_self">PermissionIdExistDto</a>)</code>
                 </td>
             </tr>
 
@@ -437,14 +446,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;删除权限字符&#x27;})<br /></code>
+                    <code>@Post(&#x27;remove&#x27;)<br />@ApiOperation({summary: &#x27;删除权限字符&#x27;})<br />@ApiOkResponse({type: SuccessOperationResponse})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/modules/permission/permission.controller.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/modules/permission/permission.controller.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -465,9 +474,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>dto</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../classes/PermissionIdExistDto.html" target="_self" >PermissionIdExistDto</a></code>
                                             </td>
 
                                             <td>
@@ -498,6 +507,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>update</b></span>
                         <a href="#update"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -506,7 +516,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updatePermissionDto: <a href="../classes/UpdatePermissionDto.html" target="_self">UpdatePermissionDto</a>)</code>
+                    <code>update(updatePermissionDto: <a href="../classes/UpdatePermissionDto.html" target="_self">UpdatePermissionDto</a>)</code>
                 </td>
             </tr>
 
@@ -514,14 +524,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;更新权限字符&#x27;})<br /></code>
+                    <code>@Post(&#x27;update&#x27;)<br />@ApiOperation({summary: &#x27;更新权限字符&#x27;})<br />@ApiOkResponse({type: Permission})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/modules/permission/permission.controller.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/modules/permission/permission.controller.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -541,18 +551,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
                                         <tr>
                                                 <td>updatePermissionDto</td>
                                             <td>
@@ -583,57 +581,70 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Query } from &#x27;@nestjs/common&#x27;;
 import { PermissionService } from &#x27;./permission.service&#x27;;
 import { CreatePermissionDto } from &#x27;./dto/create-permission.dto&#x27;;
 import { UpdatePermissionDto } from &#x27;./dto/update-permission.dto&#x27;;
-import { ApiOperation, ApiTags } from &#x27;@nestjs/swagger&#x27;;
 import { PaginationPermissionDto } from &#x27;./dto/pagination-permission.dto&#x27;;
+import { PermissionIdExistDto } from &#x27;./dto/permission-id-exist.dto&#x27;;
+import { Permission } from &#x27;@/_gen/prisma-class/permission&#x27;;
+import {
+  ApiOkResponse,
+  ApiTags,
+  ApiExtraModels,
+  ApiOperation,
+  ApiBearerAuth,
+} from &#x27;@nestjs/swagger&#x27;;
+import { PaginationPermissionResponse } from &#x27;./types/pagination-permission.types&#x27;;
+import { SuccessOperationResponse } from &#x27;@/commons/types/success-operation.types&#x27;;
 
 @ApiTags(&#x27;权限字符管理&#x27;)
 @Controller(&#x27;permission&#x27;)
+@ApiExtraModels(
+  Permission,
+  PaginationPermissionResponse,
+  SuccessOperationResponse,
+)
+@ApiBearerAuth()
 export class PermissionController {
   constructor(private readonly permissionService: PermissionService) {}
 
-  @Post()
+  @Post(&#x27;create&#x27;)
   @ApiOperation({ summary: &#x27;创建权限字符&#x27; })
+  @ApiOkResponse({ type: Permission })
   create(@Body() createPermissionDto: CreatePermissionDto) {
     return this.permissionService.create(createPermissionDto);
   }
 
-  @Get()
+  @Get(&#x27;list&#x27;)
   @ApiOperation({ summary: &#x27;获取所有权限字符&#x27; })
-  findAll(@Body() paginate: PaginationPermissionDto) {
+  @ApiOkResponse({ type: PaginationPermissionResponse })
+  findAll(@Query() paginate: PaginationPermissionDto) {
     return this.permissionService.findAll(paginate);
   }
 
-  @Get(&#x27;:id&#x27;)
+  @Get(&#x27;detail&#x27;)
   @ApiOperation({ summary: &#x27;获取单个权限字符&#x27; })
-  findOne(@Param(&#x27;id&#x27;) id: string) {
-    return this.permissionService.findOne(id);
+  @ApiOkResponse({ type: Permission })
+  findOne(@Query() dto: PermissionIdExistDto) {
+    return this.permissionService.findOne(dto.id);
   }
 
-  @Patch(&#x27;:id&#x27;)
+  @Post(&#x27;update&#x27;)
   @ApiOperation({ summary: &#x27;更新权限字符&#x27; })
-  update(
-    @Param(&#x27;id&#x27;) id: string,
-    @Body() updatePermissionDto: UpdatePermissionDto,
-  ) {
-    return this.permissionService.update(id, updatePermissionDto);
+  @ApiOkResponse({ type: Permission })
+  update(@Body() updatePermissionDto: UpdatePermissionDto) {
+    return this.permissionService.update(
+      updatePermissionDto.id,
+      updatePermissionDto,
+    );
   }
 
-  @Delete(&#x27;:id&#x27;)
+  @Post(&#x27;remove&#x27;)
   @ApiOperation({ summary: &#x27;删除权限字符&#x27; })
-  remove(@Param(&#x27;id&#x27;) id: string) {
-    return this.permissionService.remove(id);
+  @ApiOkResponse({ type: SuccessOperationResponse })
+  remove(@Body() dto: PermissionIdExistDto) {
+    return this.permissionService.remove(dto.id);
   }
 }
 </code></pre>

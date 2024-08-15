@@ -128,7 +128,10 @@
                 <h3>Extends</h3>
             </p>
             <p class="comment">
-                        <code>PartialType(CreateUserDto)</code>
+                        <code>IntersectionType(
+  UserIdExistDto,
+  PartialType(CreateUserDto),
+)</code>
             </p>
 
 
@@ -146,10 +149,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType } from &#x27;@nestjs/swagger&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IntersectionType, PartialType } from &#x27;@nestjs/swagger&#x27;;
 import { CreateUserDto } from &#x27;./create-user.dto&#x27;;
+import { UserIdExistDto } from &#x27;./user-id-exist.dto&#x27;;
 
-export class UpdateUserDto extends PartialType(CreateUserDto) {}
+export class UpdateUserDto extends IntersectionType(
+  UserIdExistDto,
+  PartialType(CreateUserDto),
+) {}
 </code></pre>
     </div>
 </div>

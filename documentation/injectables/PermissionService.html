@@ -381,8 +381,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="65"
-                                    class="link-to-prism">src/modules/permission/permission.service.ts:65</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/modules/permission/permission.service.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -450,8 +450,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="112"
-                                    class="link-to-prism">src/modules/permission/permission.service.ts:112</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/modules/permission/permission.service.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -519,8 +519,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="79"
-                                    class="link-to-prism">src/modules/permission/permission.service.ts:79</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/modules/permission/permission.service.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -589,7 +589,7 @@ import { CreatePermissionDto } from &#x27;./dto/create-permission.dto&#x27;;
 import { UpdatePermissionDto } from &#x27;./dto/update-permission.dto&#x27;;
 import { PrismaService } from &#x27;nestjs-prisma&#x27;;
 import { PaginationPermissionDto } from &#x27;./dto/pagination-permission.dto&#x27;;
-import { Permission } from &#x27;@/_gen/prisma-class/permission&#x27;;
+import { Prisma } from &#x27;@prisma/client&#x27;;
 
 @Injectable()
 export class PermissionService {
@@ -617,35 +617,28 @@ export class PermissionService {
   }
 
   async findAll(paginate: PaginationPermissionDto) {
+    const where: Prisma.PermissionWhereInput &#x3D; paginate.buildWhere({
+      props: {
+        name: { type: &#x27;contains&#x27; },
+        roleIds: { type: &#x27;sin&#x27;, mapper: &#x27;roles&#x27; },
+        permissionGroupIds: { type: &#x27;sin&#x27;, mapper: &#x27;permissionGroups&#x27; },
+      },
+      withDeleted: false,
+    });
     const permissions &#x3D; await this.prisma.permission.findMany({
       include: {
         roles: true,
         permissionGroups: true,
       },
       ...paginate.toSkipAndTake(),
-      where: {
-        ...paginate.buildWhereWithNoDelete&lt;Permission&gt;({
-          name: &#x27;contains&#x27;,
-          roleIds: [&#x27;sin&#x27;, &#x27;roles&#x27;],
-          permissionGroupIds: [&#x27;sin&#x27;, &#x27;permissionGroups&#x27;],
-        }),
-      },
+      where,
     });
+
     const total &#x3D; await this.prisma.permission.count({
-      where: {
-        ...paginate.buildWhereWithNoDelete&lt;Permission&gt;({
-          name: &#x27;contains&#x27;,
-          roleIds: [&#x27;sin&#x27;, &#x27;roles&#x27;],
-          permissionGroupIds: [&#x27;sin&#x27;, &#x27;permissionGroups&#x27;],
-        }),
-      },
+      where,
     });
-    return {
-      data: permissions,
-      total,
-      page: paginate.page,
-      pageSize: paginate.pageSize,
-    };
+
+    return paginate.buildResponse(permissions, total);
   }
 
   async findOne(id: string) {

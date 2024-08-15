@@ -112,13 +112,19 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#BeforeAllDBValidation" title="src/commons/slices/DBValidation.ts" ><b>BeforeAllDBValidation</b>&nbsp;&nbsp;&nbsp;(src/.../DBValidation.ts)</a>
+                        </li>
+                        <li>
                             <a href="#bootstrap" title="src/main.ts" ><b>bootstrap</b>&nbsp;&nbsp;&nbsp;(src/.../main.ts)</a>
                         </li>
                         <li>
-                            <a href="#IsNotSameNameInDataBase" title="src/commons/pipes/not-same-name.pipe.ts" ><b>IsNotSameNameInDataBase</b>&nbsp;&nbsp;&nbsp;(src/.../not-same-name.pipe.ts)</a>
+                            <a href="#dv" title="src/utils/dv.ts" ><b>dv</b>&nbsp;&nbsp;&nbsp;(src/.../dv.ts)</a>
                         </li>
                         <li>
-                            <a href="#IsUUIDsALLInDataBase" title="src/commons/pipes/all-in-db.pipe.ts" ><b>IsUUIDsALLInDataBase</b>&nbsp;&nbsp;&nbsp;(src/.../all-in-db.pipe.ts)</a>
+                            <a href="#IsNotSameNameInDataBase" title="src/commons/decorators/not-same-name.decorator.ts" ><b>IsNotSameNameInDataBase</b>&nbsp;&nbsp;&nbsp;(src/.../not-same-name.decorator.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IsUUIDsALLInDataBase" title="src/commons/decorators/all-in-db.decorator.ts" ><b>IsUUIDsALLInDataBase</b>&nbsp;&nbsp;&nbsp;(src/.../all-in-db.decorator.ts)</a>
                         </li>
                         <li>
                             <a href="#main" title="src/main.ts" ><b>main</b>&nbsp;&nbsp;&nbsp;(src/.../main.ts)</a>
@@ -129,6 +135,9 @@
                         <li>
                             <a href="#syncRoute" title="src/utils/sync-route.ts" ><b>syncRoute</b>&nbsp;&nbsp;&nbsp;(src/.../sync-route.ts)</a>
                         </li>
+                        <li>
+                            <a href="#ValidateInDBByPipe" title="src/commons/slices/DBValidation.ts" ><b>ValidateInDBByPipe</b>&nbsp;&nbsp;&nbsp;(src/.../DBValidation.ts)</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
@@ -136,7 +145,129 @@
     </table>
 </section>
 
-    <h3>src/main.ts</h3>
+    <h3>src/commons/slices/DBValidation.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BeforeAllDBValidation"></a>
+                    <span class="name">
+                        <span ><b>BeforeAllDBValidation</b></span>
+                        <a href="#BeforeAllDBValidation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>BeforeAllDBValidation(func: <a href="../undefineds/BeforeAllDBValidationFunc.html" target="_self">BeforeAllDBValidationFunc</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>func</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#BeforeAllDBValidationFunc" target="_self" >BeforeAllDBValidationFunc</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ValidateInDBByPipe"></a>
+                    <span class="name">
+                        <span ><b>ValidateInDBByPipe</b></span>
+                        <a href="#ValidateInDBByPipe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ValidateInDBByPipe(validateFunc: <a href="../undefineds/ValidateFunc.html" target="_self">ValidateFunc</a>, validationOptions: <a href="../interfaces/ValidateInDBOptions.html" target="_self">ValidateInDBOptions</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>validateFunc</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#ValidateFunc" target="_self" >ValidateFunc</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>validationOptions</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ValidateInDBOptions.html" target="_self" >ValidateInDBOptions</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/main.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -214,7 +345,82 @@
 
         </tbody>
     </table>
-</section>    <h3>src/commons/pipes/not-same-name.pipe.ts</h3>
+</section>    <h3>src/utils/dv.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dv"></a>
+                    <span class="name">
+                        <span ><b>dv</b></span>
+                        <a href="#dv"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dv(condition: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, value: T)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>condition</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#EmptyValue" target="_self" >T | EmptyValue</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/commons/decorators/not-same-name.decorator.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -282,7 +488,7 @@
             </tr>
         </tbody>
     </table>
-</section>    <h3>src/commons/pipes/all-in-db.pipe.ts</h3>
+</section>    <h3>src/commons/decorators/all-in-db.decorator.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>

@@ -112,7 +112,25 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#ApiResponse" title="src/commons/decorators/api-res.decorator.ts" ><b>ApiResponse</b>&nbsp;&nbsp;&nbsp;(src/.../api-res.decorator.ts)</a>
+                        </li>
+                        <li>
                             <a href="#APP_CONFIG_TOKEN" title="src/configs/app-config.ts" ><b>APP_CONFIG_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../app-config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BEFORE_ALL_DB_VALIDATION_KEY" title="src/commons/slices/DBValidation.ts" ><b>BEFORE_ALL_DB_VALIDATION_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../DBValidation.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CreatePermissionDtoFilterType" title="src/modules/permission/dto/pagination-permission.dto.ts" ><b>CreatePermissionDtoFilterType</b>&nbsp;&nbsp;&nbsp;(src/.../pagination-permission.dto.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DBValidationBody" title="src/commons/slices/DBValidation.ts" ><b>DBValidationBody</b>&nbsp;&nbsp;&nbsp;(src/.../DBValidation.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DBValidationParam" title="src/commons/slices/DBValidation.ts" ><b>DBValidationParam</b>&nbsp;&nbsp;&nbsp;(src/.../DBValidation.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DBValidationQuery" title="src/commons/slices/DBValidation.ts" ><b>DBValidationQuery</b>&nbsp;&nbsp;&nbsp;(src/.../DBValidation.ts)</a>
                         </li>
                         <li>
                             <a href="#envFilePath" title="src/app.module.ts" ><b>envFilePath</b>&nbsp;&nbsp;&nbsp;(src/.../app.module.ts)</a>
@@ -139,10 +157,16 @@
                             <a href="#PRESET_ROLE" title="src/modules/iam/constants/preset-role.constant.ts" ><b>PRESET_ROLE</b>&nbsp;&nbsp;&nbsp;(src/.../preset-role.constant.ts)</a>
                         </li>
                         <li>
-                            <a href="#prisma" title="src/commons/pipes/all-in-db.pipe.ts" ><b>prisma</b>&nbsp;&nbsp;&nbsp;(src/.../all-in-db.pipe.ts)</a>
+                            <a href="#prisma" title="src/commons/decorators/all-in-db.decorator.ts" ><b>prisma</b>&nbsp;&nbsp;&nbsp;(src/.../all-in-db.decorator.ts)</a>
                         </li>
                         <li>
-                            <a href="#prisma" title="src/commons/pipes/not-same-name.pipe.ts" ><b>prisma</b>&nbsp;&nbsp;&nbsp;(src/.../not-same-name.pipe.ts)</a>
+                            <a href="#prisma" title="src/commons/decorators/not-same-name.decorator.ts" ><b>prisma</b>&nbsp;&nbsp;&nbsp;(src/.../not-same-name.decorator.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#VALIDATE_IN_DB_KEY" title="src/commons/slices/DBValidation.ts" ><b>VALIDATE_IN_DB_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../DBValidation.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#VALIDATE_IN_DB_OPTIONS_KEY" title="src/commons/slices/DBValidation.ts" ><b>VALIDATE_IN_DB_OPTIONS_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../DBValidation.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -151,6 +175,31 @@
     </table>
 </section>
 
+    <h3>src/commons/decorators/api-res.decorator.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ApiResponse"></a>
+                    <span class="name">
+                        <span ><b>ApiResponse</b></span>
+                        <a href="#ApiResponse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&lt;TModel extends Type&lt;any&gt;&gt;(_model: TModel) &#x3D;&gt; {
+  return applyDecorators(ApiOkResponse({}));
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
     <h3>src/configs/app-config.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -173,6 +222,184 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>&#x27;app&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/commons/slices/DBValidation.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BEFORE_ALL_DB_VALIDATION_KEY"></a>
+                    <span class="name">
+                        <span ><b>BEFORE_ALL_DB_VALIDATION_KEY</b></span>
+                        <a href="#BEFORE_ALL_DB_VALIDATION_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;beforeAllDBValidation&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DBValidationBody"></a>
+                    <span class="name">
+                        <span ><b>DBValidationBody</b></span>
+                        <a href="#DBValidationBody"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createParamDecorator(
+  (_data: unknown, _ctx: ExecutionContext) &#x3D;&gt; {
+    return Body(DBValidationPipe);
+  },
+)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DBValidationParam"></a>
+                    <span class="name">
+                        <span ><b>DBValidationParam</b></span>
+                        <a href="#DBValidationParam"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createParamDecorator(
+  (_data: unknown, _ctx: ExecutionContext) &#x3D;&gt; {
+    return Param(DBValidationPipe);
+  },
+)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DBValidationQuery"></a>
+                    <span class="name">
+                        <span ><b>DBValidationQuery</b></span>
+                        <a href="#DBValidationQuery"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createParamDecorator(
+  (_data: unknown, _ctx: ExecutionContext) &#x3D;&gt; {
+    return Query(DBValidationPipe);
+  },
+)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VALIDATE_IN_DB_KEY"></a>
+                    <span class="name">
+                        <span ><b>VALIDATE_IN_DB_KEY</b></span>
+                        <a href="#VALIDATE_IN_DB_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;validateInDB&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VALIDATE_IN_DB_OPTIONS_KEY"></a>
+                    <span class="name">
+                        <span ><b>VALIDATE_IN_DB_OPTIONS_KEY</b></span>
+                        <a href="#VALIDATE_IN_DB_OPTIONS_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;validateInDBOptions&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/permission/dto/pagination-permission.dto.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CreatePermissionDtoFilterType"></a>
+                    <span class="name">
+                        <span ><b>CreatePermissionDtoFilterType</b></span>
+                        <a href="#CreatePermissionDtoFilterType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>PartialType(
+  OmitType(CreatePermissionDto, [&#x27;description&#x27;] as const),
+)</code>
                     </td>
                 </tr>
 
@@ -426,7 +653,7 @@
         </tbody>
     </table>
 </section>
-    <h3>src/commons/pipes/all-in-db.pipe.ts</h3>
+    <h3>src/commons/decorators/all-in-db.decorator.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -449,7 +676,7 @@
         </tbody>
     </table>
 </section>
-    <h3>src/commons/pipes/not-same-name.pipe.ts</h3>
+    <h3>src/commons/decorators/not-same-name.decorator.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>

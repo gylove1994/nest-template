@@ -143,9 +143,11 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#create" >create</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                 <a href="#findAll" >findAll</a>
@@ -153,14 +155,17 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#findOne" >findOne</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#remove" >remove</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                 <a href="#update" >update</a>
@@ -190,6 +195,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>create</b></span>
                         <a href="#create"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -206,14 +212,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br />@ApiOperation({summary: &#x27;创建角色&#x27;})<br /></code>
+                    <code>@Post(&#x27;create&#x27;)<br />@ApiOperation({summary: &#x27;创建角色&#x27;})<br />@ApiOkResponse({type: Role})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/modules/role/role.controller.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/modules/role/role.controller.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -267,6 +273,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -283,14 +290,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@ApiOperation({summary: &#x27;获取所有角色&#x27;})<br /></code>
+                    <code>@Post(&#x27;list&#x27;)<br />@ApiOperation({summary: &#x27;获取所有角色&#x27;})<br />@ApiOkResponse({type: PaginationRoleResponse})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/modules/role/role.controller.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/modules/role/role.controller.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -344,6 +351,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>findOne</b></span>
                         <a href="#findOne"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -352,7 +360,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>findOne(dto: <a href="../classes/UserIdExistDto.html" target="_self">UserIdExistDto</a>)</code>
                 </td>
             </tr>
 
@@ -360,14 +368,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;获取单个角色&#x27;})<br /></code>
+                    <code>@Get(&#x27;detail&#x27;)<br />@ApiOperation({summary: &#x27;获取单个角色&#x27;})<br />@ApiOkResponse({type: Role})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/modules/role/role.controller.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/modules/role/role.controller.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -388,9 +396,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>dto</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../classes/UserIdExistDto.html" target="_self" >UserIdExistDto</a></code>
                                             </td>
 
                                             <td>
@@ -421,6 +429,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>remove</b></span>
                         <a href="#remove"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -429,7 +438,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>remove(dto: <a href="../classes/RoleIdExistDto.html" target="_self">RoleIdExistDto</a>)</code>
                 </td>
             </tr>
 
@@ -437,14 +446,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;删除角色&#x27;})<br /></code>
+                    <code>@Post(&#x27;remove&#x27;)<br />@ApiOperation({summary: &#x27;删除角色&#x27;})<br />@ApiOkResponse({type: SuccessOperationResponse})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/modules/role/role.controller.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/modules/role/role.controller.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -465,9 +474,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>dto</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../classes/RoleIdExistDto.html" target="_self" >RoleIdExistDto</a></code>
                                             </td>
 
                                             <td>
@@ -498,6 +507,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>update</b></span>
                         <a href="#update"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -506,7 +516,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateRoleDto: <a href="../classes/UpdateRoleDto.html" target="_self">UpdateRoleDto</a>)</code>
+                    <code>update(updateRoleDto: <a href="../classes/UpdateRoleDto.html" target="_self">UpdateRoleDto</a>)</code>
                 </td>
             </tr>
 
@@ -514,14 +524,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;:id&#x27;)<br />@ApiOperation({summary: &#x27;更新角色&#x27;})<br /></code>
+                    <code>@Post(&#x27;update&#x27;)<br />@ApiOperation({summary: &#x27;更新角色&#x27;})<br />@ApiOkResponse({type: Role})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/modules/role/role.controller.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/modules/role/role.controller.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -541,18 +551,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
                                         <tr>
                                                 <td>updateRoleDto</td>
                                             <td>
@@ -583,54 +581,64 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Query } from &#x27;@nestjs/common&#x27;;
 import { RoleService } from &#x27;./role.service&#x27;;
 import { CreateRoleDto } from &#x27;./dto/create-role.dto&#x27;;
 import { UpdateRoleDto } from &#x27;./dto/update-role.dto&#x27;;
-import { ApiOperation, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import {
+  ApiBearerAuth,
+  ApiExtraModels,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from &#x27;@nestjs/swagger&#x27;;
 import { PaginationRoleDto } from &#x27;./dto/pagination-role.dto&#x27;;
+import { RoleIdExistDto } from &#x27;./dto/role-id-exist.dto&#x27;;
+import { UserIdExistDto } from &#x27;../user/dto/user-id-exist.dto&#x27;;
+import { SuccessOperationResponse } from &#x27;@/commons/types/success-operation.types&#x27;;
+import { Role } from &#x27;@/_gen/prisma-class/role&#x27;;
+import { PaginationRoleResponse } from &#x27;./types/pagination-role.types&#x27;;
 
 @ApiTags(&#x27;角色管理&#x27;)
 @Controller(&#x27;role&#x27;)
+@ApiBearerAuth()
+@ApiExtraModels(SuccessOperationResponse, PaginationRoleResponse)
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
 
-  @Post()
+  @Post(&#x27;create&#x27;)
   @ApiOperation({ summary: &#x27;创建角色&#x27; })
+  @ApiOkResponse({ type: Role })
   create(@Body() createRoleDto: CreateRoleDto) {
     return this.roleService.create(createRoleDto);
   }
 
-  @Get()
+  @Post(&#x27;list&#x27;)
   @ApiOperation({ summary: &#x27;获取所有角色&#x27; })
+  @ApiOkResponse({ type: PaginationRoleResponse })
   findAll(@Body() paginationDto: PaginationRoleDto) {
     return this.roleService.findAll(paginationDto);
   }
 
-  @Get(&#x27;:id&#x27;)
+  @Get(&#x27;detail&#x27;)
   @ApiOperation({ summary: &#x27;获取单个角色&#x27; })
-  findOne(@Param(&#x27;id&#x27;) id: string) {
-    return this.roleService.findOne(id);
+  @ApiOkResponse({ type: Role })
+  findOne(@Query() dto: UserIdExistDto) {
+    return this.roleService.findOne(dto.id);
   }
 
-  @Patch(&#x27;:id&#x27;)
+  @Post(&#x27;update&#x27;)
   @ApiOperation({ summary: &#x27;更新角色&#x27; })
-  update(@Param(&#x27;id&#x27;) id: string, @Body() updateRoleDto: UpdateRoleDto) {
-    return this.roleService.update(id, updateRoleDto);
+  @ApiOkResponse({ type: Role })
+  update(@Body() updateRoleDto: UpdateRoleDto) {
+    return this.roleService.update(updateRoleDto.id, updateRoleDto);
   }
 
-  @Delete(&#x27;:id&#x27;)
+  @Post(&#x27;remove&#x27;)
   @ApiOperation({ summary: &#x27;删除角色&#x27; })
-  remove(@Param(&#x27;id&#x27;) id: string) {
-    return this.roleService.remove(id);
+  @ApiOkResponse({ type: SuccessOperationResponse })
+  remove(@Body() dto: RoleIdExistDto) {
+    return this.roleService.remove(dto.id);
   }
 }
 </code></pre>

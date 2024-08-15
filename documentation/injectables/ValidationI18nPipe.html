@@ -79,16 +79,19 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content injectable">
                    <div class="content-data">
 
 
 
 
 
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Controllers</li>
-  <li class="breadcrumb-item" >IamController</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ValidationI18nPipe</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -112,16 +115,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/iam/iam.controller.ts</code>
+            <code>src/commons/pipes/validation-I18n-pipe.ts</code>
         </p>
-
-            <p class="comment">
-                <h3>Prefix</h3>
-            </p>
-            <p class="comment">
-                <code>iam</code>
-            </p>
-
 
 
 
@@ -141,23 +136,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Async</span>
-                                <a href="#signIn" >signIn</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#toValidate" >toValidate</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
-                                <a href="#signOut" >signOut</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Async</span>
-                                <a href="#signUp" >signUp</a>
+                                <a href="#transform" >transform</a>
                             </li>
                         </ul>
                     </td>
@@ -171,6 +155,55 @@
     </table>
 </section>
 
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(i18n: I18nService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/commons/pipes/validation-I18n-pipe.ts:13</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>i18n</td>
+                                                  
+                                                        <td>
+                                                                    <code>I18nService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
             <section data-compodoc="block-methods">
     
     <h3 id="methods">
@@ -180,35 +213,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="signIn"></a>
+                    <a name="toValidate"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Async</span>
-                        <span ><b>signIn</b></span>
-                        <a href="#signIn"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>toValidate</b></span>
+                        <a href="#toValidate"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>signIn(dto: <a href="../classes/SignInDto.html" target="_self">SignInDto</a>, ua?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>toValidate(metatype: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank">Function</a>)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Post(&#x27;signIn&#x27;)<br />@ApiOperation({summary: &#x27;用户登录&#x27;})<br /></code>
-                </td>
-            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="18"
-                                    class="link-to-prism">src/modules/iam/iam.controller.ts:18</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/commons/pipes/validation-I18n-pipe.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -229,9 +253,78 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>dto</td>
+                                                <td>metatype</td>
                                             <td>
-                                                            <code><a href="../classes/SignInDto.html" target="_self" >SignInDto</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" >Function</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="transform"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>transform</b></span>
+                        <a href="#transform"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>transform(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, undefined: ArgumentMetadata)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/commons/pipes/validation-I18n-pipe.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                             </td>
 
                                             <td>
@@ -241,178 +334,8 @@
 
                                         </tr>
                                         <tr>
-                                                <td>ua</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    Yes
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>unknown</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="signOut"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Async</span>
-                        <span ><b>signOut</b></span>
-                        <a href="#signOut"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>signOut(user?: <a href="../classes/User.html" target="_self">User</a>, token?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Post(&#x27;signOut&#x27;)<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;用户登出&#x27;})<br /></code>
-                </td>
-            </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/modules/iam/iam.controller.ts:31</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>user</td>
-                                            <td>
-                                                            <code><a href="../classes/User.html" target="_self" >User</a></code>
-                                            </td>
-
-                                            <td>
-                                                    Yes
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>token</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    Yes
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>unknown</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="signUp"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Async</span>
-                        <span ><b>signUp</b></span>
-                        <a href="#signUp"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>signUp(dto: <a href="../classes/SignUpDto.html" target="_self">SignUpDto</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Post(&#x27;signUp&#x27;)<br />@ApiOperation({summary: &#x27;用户注册&#x27;})<br /></code>
-                </td>
-            </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="24"
-                                    class="link-to-prism">src/modules/iam/iam.controller.ts:24</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>dto</td>
-                                            <td>
-                                                            <code><a href="../classes/SignUpDto.html" target="_self" >SignUpDto</a></code>
+                                                        <code>ArgumentMetadata</code>
                                             </td>
 
                                             <td>
@@ -435,50 +358,60 @@
             </tr>
         </tbody>
     </table>
-</section>    </div>
+</section>
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Post } from &#x27;@nestjs/common&#x27;;
-import { IamService } from &#x27;./iam.service&#x27;;
-import { SignInDto } from &#x27;./dtos/sign-in.dto&#x27;;
-import { SignUpDto } from &#x27;./dtos/sign-up.dto&#x27;;
-import { GetUser } from &#x27;./decorators/get-user.decorator&#x27;;
-import { User } from &#x27;@prisma/client&#x27;;
-import { GetToken } from &#x27;./decorators/get-token.decorator&#x27;;
-import { ApiBearerAuth, ApiOperation, ApiTags } from &#x27;@nestjs/swagger&#x27;;
-import { GetUA } from &#x27;./decorators/get-ua.decorator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ArgumentMetadata,
+  Injectable,
+  PipeTransform,
+  BadRequestException,
+} from &#x27;@nestjs/common&#x27;;
+import { validate } from &#x27;class-validator&#x27;;
+import { plainToClass } from &#x27;class-transformer&#x27;;
+import { I18nService } from &#x27;nestjs-i18n&#x27;;
 
-@ApiTags(&#x27;认证及授权模块&#x27;)
-@Controller(&#x27;iam&#x27;)
-export class IamController {
-  constructor(private readonly iamService: IamService) {}
+@Injectable()
+export class ValidationI18nPipe implements PipeTransform&lt;any&gt; {
+  constructor(private readonly i18n: I18nService) {}
 
-  @Post(&#x27;signIn&#x27;)
-  @ApiOperation({ summary: &#x27;用户登录&#x27; })
-  async signIn(@Body() dto: SignInDto, @GetUA() ua?: string) {
-    return this.iamService.signIn(dto, ua);
+  async transform(value: any, { metatype }: ArgumentMetadata) {
+    if (!metatype || !this.toValidate(metatype)) {
+      return value;
+    }
+    const object &#x3D; plainToClass(metatype, value);
+    const errors &#x3D; await validate(object);
+    if (errors.length &gt; 0) {
+      const messages &#x3D; await Promise.all(
+        errors.map(async (error) &#x3D;&gt; {
+          const constraints &#x3D; Object.values(error.constraints);
+          return await Promise.all(
+            constraints.map(async (constraint) &#x3D;&gt; {
+              return this.i18n.translate(&#x60;validation.${constraint}&#x60;, {
+                args: {
+                  property: error.property,
+                },
+              });
+            }),
+          );
+        }),
+      );
+      throw new BadRequestException(messages.flat());
+    }
+    return value;
   }
-
-  @Post(&#x27;signUp&#x27;)
-  @ApiOperation({ summary: &#x27;用户注册&#x27; })
-  async signUp(@Body() dto: SignUpDto) {
-    return this.iamService.signUp(dto);
-  }
-
-  @Post(&#x27;signOut&#x27;)
-  @ApiBearerAuth()
-  @ApiOperation({ summary: &#x27;用户登出&#x27; })
-  async signOut(@GetUser() user?: User, @GetToken() token?: string) {
-    return this.iamService.signOutByToken(user, token);
+  private toValidate(metatype: Function): boolean {
+    const types: Function[] &#x3D; [String, Boolean, Number, Array, Object];
+    return !types.includes(metatype);
   }
 }
 </code></pre>
     </div>
+
 </div>
-
-
-
 
 
 
@@ -517,8 +450,8 @@ export class IamController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'IamController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ValidationI18nPipe.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
