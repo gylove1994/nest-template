@@ -29,7 +29,7 @@ export class ApiPermission {
   apiPermissionGroups: ApiPermissionGroup[];
 
   @ApiProperty({ isArray: true, type: () => OperationLog })
-  operationLogs: OperationLog[];
+  OperationLogs: OperationLog[];
 
   @ApiProperty({ isArray: true, type: () => Role })
   roles: Role[];

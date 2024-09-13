@@ -22,7 +22,7 @@ export class OperationLog {
   deletedAt?: Date;
 
   @ApiProperty({ type: () => ApiPermission })
-  apiPermission: ApiPermission;
+  ApiPermission: ApiPermission;
 
   @ApiProperty({ type: String })
   apiPermissionId: string;

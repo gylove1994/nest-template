@@ -9,6 +9,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import helmet from 'helmet';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
+import * as express from 'express';
 
 export async function bootstrap(app: NestExpressApplication) {
   const configService = app.get(ConfigService);
@@ -16,6 +17,8 @@ export async function bootstrap(app: NestExpressApplication) {
   if (appConfig.env !== 'production') {
     app.enableCors();
   }
+  app.use(express.json({ limit: '5mb' }));
+  app.use(express.urlencoded({ extended: true, limit: '5mb' }));
   app.use(helmet());
   app.use(compression());
   app.use(cookieParser());
