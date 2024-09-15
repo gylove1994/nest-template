@@ -1,0 +1,32 @@
+name: Docker CD
+
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: '构建版本'
+        required: false
+        default: 'latest'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 登录到私有 Docker 仓库
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.REGISTRY_URL }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: 构建并推送 Docker 镜像
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.REGISTRY_URL }}/your-repo-name:${{ github.event.inputs.version || 'latest' }}

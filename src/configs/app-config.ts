@@ -7,6 +7,7 @@ export interface IAppConfig {
   appDescription: string;
   appVersion: string;
   appHost: string;
+  ossBucket: string;
 }
 
 export const APP_CONFIG_TOKEN = 'app';
@@ -19,5 +20,6 @@ export default registerAs(APP_CONFIG_TOKEN, () => {
     appDescription: process.env.APP_DESCRIPTION || 'NestJS App Description',
     appVersion: process.env.APP_VERSION || '1.0.0',
     appHost: process.env.APP_HOST || 'localhost',
+    ossBucket: process.env.OSS_BUCKET || 'turbo-dev',
   } satisfies IAppConfig;
 });

@@ -3,8 +3,7 @@ import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { APP_CONFIG_TOKEN, IAppConfig } from './configs/app-config';
-import { Logger } from '@nestjs/common';
-import { syncRoute } from './utils/sync-route';
+import { Logger } from 'nestjs-pino';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import helmet from 'helmet';
 import * as compression from 'compression';
@@ -28,7 +27,10 @@ export async function bootstrap(app: NestExpressApplication) {
 async function main() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     snapshot: true,
+    bufferLogs: true,
   });
+  const logger = app.get(Logger);
+  app.useLogger(logger);
   const configService = app.get(ConfigService);
   const appConfig = configService.get<IAppConfig>(APP_CONFIG_TOKEN);
   const config = new DocumentBuilder()
@@ -40,19 +42,18 @@ async function main() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('sapi', app, document);
   await app.listen(appConfig.port);
-  await syncRoute(app);
-  Logger.log(`-------------------------------------`, 'Bootstrap');
-  Logger.log(
+  logger.log(`-------------------------------------`, 'Bootstrap');
+  logger.log(
     `Server running on http://${appConfig.appHost}:${appConfig.port}`,
     'Bootstrap',
   );
-  Logger.log(
+  logger.log(
     `Swagger running on http://${appConfig.appHost}:${appConfig.port}/sapi`,
     'Bootstrap',
   );
-  Logger.log(`Environment: ${appConfig.env}`, 'Bootstrap');
-  Logger.log(`Version: ${appConfig.appVersion}`, 'Bootstrap');
-  Logger.log(`-------------------------------------`, 'Bootstrap');
+  logger.log(`Environment: ${appConfig.env}`, 'Bootstrap');
+  logger.log(`Version: ${appConfig.appVersion}`, 'Bootstrap');
+  logger.log(`-------------------------------------`, 'Bootstrap');
 }
 
 if (require.main === module) {

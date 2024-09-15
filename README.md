@@ -1,73 +1,66 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Nest Template
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+这是一个基于 NestJS 框架的项目模板。
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 项目特性
 
-## Description
+- 使用 TypeScript 开发
+- 集成 Prisma ORM
+- 支持多语言国际化 (i18n)
+- 包含用户角色和权限管理
+- 集成 CI/CD 工作流
+- 使用 pnpm 作为包管理器
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 开始使用
 
-## Installation
+### 前置要求
+
+- Node.js (推荐版本 20)
+- pnpm
+- PostgreSQL 数据库
+
+### 安装
+
+1. 克隆仓库:
 
 ```bash
-$ pnpm install
+git clone <仓库URL>
+cd nest-template
 ```
 
-## Running the app
+2. 安装依赖:
 
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+pnpm install
 ```
 
-## Test
+3. 配置环境变量:
+
+复制 `.env.example` 文件并重命名为 `.env.development`、`.env.test` 和 `.env.production`，根据不同环境填写相应的配置。
+
+4. 运行数据库迁移:
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+pnpm run p:migrate:dev
 ```
 
-## Support
+5. 填充初始数据:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+pnpm prisma db seed
+```
 
-## Stay in touch
+### 运行
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- 开发模式:
 
-## License
+```bash
+pnpm run start:dev
+```
 
-Nest is [MIT licensed](LICENSE).
+- 生产模式:
+
+```bash
+pnpm run build
+pnpm run start:prod
+```

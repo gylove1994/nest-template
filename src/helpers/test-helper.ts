@@ -3,7 +3,6 @@ import { PrismaClient } from '@prisma/client';
 import { AppModule } from '@/app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { bootstrap } from '@/main';
-import { syncRoute } from '@/utils/sync-route';
 import * as request from 'supertest';
 import { randomBytes } from 'crypto';
 import { ValidationPipe } from '@nestjs/common';
@@ -49,11 +48,6 @@ export class TestHelper {
         .createNestApplication<NestExpressApplication>()
         .init();
       this.app = await bootstrap(server);
-      try {
-        await syncRoute(this.app);
-      } catch (e) {
-        // console.error(e);
-      }
     });
 
     afterEach(async () => {

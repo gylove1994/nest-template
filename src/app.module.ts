@@ -10,11 +10,19 @@ import appConfig from './configs/app-config';
 import { PrismaModule, PrismaService } from 'nestjs-prisma';
 import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
 import { APP_INTERCEPTOR, APP_PIPE, Reflector } from '@nestjs/core';
-import { HttpModule } from '@nestjs/axios';
 import { HeaderResolver, I18nModule, I18nService } from 'nestjs-i18n';
 import * as path from 'path';
-import { ValidationI18nPipe } from './commons/pipes/validation-I18n-pipe';
+import { ValidationI18nPipe } from './commons/pipes/validationI18n.pipe';
 import { DBValidationPipe } from './commons/slices/DBValidation';
+import { RedisOptions } from 'ioredis';
+import cacheConfig from './configs/cache-config';
+import { MailerModule } from '@nestjs-modules/mailer';
+import mailerConfig from './configs/mailer-config';
+import { NestMinioModule } from 'nestjs-minio';
+import ossConfig from './configs/oss-config';
+import { LoggerModule } from 'nestjs-pino';
+import loggerConfig from './configs/logger-config';
+import rabbitmqConfig from './configs/rabbitmq-config';
 
 const envFilePath = process.env.NODE_ENV;
 
@@ -27,7 +35,6 @@ const providers: Provider[] = [
     provide: APP_PIPE,
     useFactory: (
       i18n: I18nService,
-      configService: ConfigService,
       prismaService: PrismaService,
       reflector: Reflector,
     ) => {
@@ -52,12 +59,17 @@ const globalModules: DynamicModule[] = [
   }),
   ConfigModule.forRoot({
     isGlobal: true,
-    load: [appConfig],
+    load: [
+      appConfig,
+      cacheConfig,
+      loggerConfig,
+      ossConfig,
+      mailerConfig,
+      rabbitmqConfig,
+    ],
     envFilePath: `.env.${envFilePath ?? 'production'}`,
   }),
-  CacheModule.register({
-    isGlobal: true,
-  }),
+  CacheModule.registerAsync<RedisOptions>(cacheConfig.asProvider()),
   I18nModule.forRoot({
     fallbackLanguage: 'zh_CN',
     loaderOptions: {
@@ -69,7 +81,9 @@ const globalModules: DynamicModule[] = [
   PrismaModule.forRoot({
     isGlobal: true,
   }),
-  HttpModule.register({}),
+  MailerModule.forRootAsync(mailerConfig.asProvider()),
+  NestMinioModule.registerAsync(ossConfig.asProvider()),
+  LoggerModule.forRootAsync(loggerConfig.asProvider()),
 ];
 
 @Module({
