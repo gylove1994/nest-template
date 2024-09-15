@@ -44,11 +44,8 @@ COPY --from=builder /usr/src/app/prisma ./prisma
 # 安装仅生产环境需要的依赖
 RUN npm install -g pnpm && pnpm install --prod
 
-ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/wait-for-it.sh
-RUN chmod +x /usr/wait-for-it.sh
-
 # 暴露端口
 EXPOSE 4000
 
 # 启动应用
-CMD ["sh", "-c", "/usr/wait-for-it.sh db:5432 -- npx prisma migrate deploy && npx prisma db seed && node dist/src/main"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma db seed && node dist/src/main"]

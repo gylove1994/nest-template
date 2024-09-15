@@ -5,6 +5,7 @@
     "kolorist",
     "metatype",
     "pino",
+    "sealos",
     "websockets"
   ],
 } 
