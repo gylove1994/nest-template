@@ -2,6 +2,7 @@ import {
   DynamicModule,
   Module,
   Provider,
+  Type,
   ValidationPipe,
 } from '@nestjs/common';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
@@ -25,6 +26,7 @@ import loggerConfig from './configs/logger-config';
 import rabbitmqConfig from './configs/rabbitmq-config';
 import { SubscribeModule } from './modules/rabbitmq/subscribe/subscribe.module';
 import { PublishModule } from './modules/rabbitmq/publish/publish.module';
+import { FileModule } from './modules/file/file.module';
 
 const envFilePath = process.env.NODE_ENV;
 
@@ -54,7 +56,7 @@ const providers: Provider[] = [
   },
 ];
 
-const globalModules: DynamicModule[] = [
+const globalModules: Array<DynamicModule | Type<any>> = [
   DevtoolsModule.register({
     http: process.env.NODE_ENV == 'development',
     port: 6000,
@@ -87,10 +89,12 @@ const globalModules: DynamicModule[] = [
   NestMinioModule.registerAsync(ossConfig.asProvider()),
   LoggerModule.forRootAsync(loggerConfig.asProvider()),
   PublishModule.forRoot(),
+  FileModule.forRoot(),
+  SubscribeModule,
 ];
 
 @Module({
-  imports: [...globalModules, SubscribeModule],
+  imports: [...globalModules],
   providers: [...providers],
 })
 export class AppModule {}

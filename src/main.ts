@@ -21,6 +21,7 @@ export async function bootstrap(app: NestExpressApplication) {
   app.use(helmet());
   app.use(compression());
   app.use(cookieParser());
+  app.setGlobalPrefix('api');
   return app;
 }
 
@@ -44,11 +45,11 @@ async function main() {
   await app.listen(appConfig.port);
   logger.log(`-------------------------------------`, 'Bootstrap');
   logger.log(
-    `Server running on http://${appConfig.appHost}:${appConfig.port}`,
+    `Server running on http://${appConfig.appHost}:${appConfig.port}/api`,
     'Bootstrap',
   );
   logger.log(
-    `Swagger running on http://${appConfig.appHost}:${appConfig.port}/sapi`,
+    `Swagger running on http://${appConfig.appHost}:${appConfig.port}/api/swagger`,
     'Bootstrap',
   );
   logger.log(`Environment: ${appConfig.env}`, 'Bootstrap');

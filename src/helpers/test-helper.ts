@@ -4,7 +4,6 @@ import { AppModule } from '@/app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { bootstrap } from '@/main';
 import * as request from 'supertest';
-import { randomBytes } from 'crypto';
 import { ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 
@@ -73,65 +72,5 @@ export class TestHelper {
 
   get request() {
     return request(this.app.getHttpServer());
-  }
-
-  async genUser({
-    email,
-    pass,
-    role,
-  }: {
-    email: string;
-    pass: string;
-    role: string;
-  }) {
-    const user = await this.prismaClient.user.create({
-      data: {
-        email,
-        password: pass,
-        role: {
-          connect: {
-            name: role,
-          },
-        },
-      },
-    });
-    return user;
-  }
-
-  async genToken(role: string) {
-    const user = await this.prismaClient.user.findFirst({
-      where: {
-        role: {
-          name: role,
-        },
-      },
-      include: {
-        role: true,
-      },
-    });
-
-    const res = await this.prismaClient.session.create({
-      data: {
-        token: randomBytes(32).toString('hex'),
-        expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
-        user: {
-          connect: {
-            id: user.id,
-          },
-        },
-      },
-    });
-
-    this.cleanUpCallbacks.push(async () => {
-      try {
-        await this.prismaClient.session.delete({
-          where: {
-            id: res.id,
-          },
-        });
-      } catch (e) {}
-    });
-
-    return res.token;
   }
 }
