@@ -42,7 +42,7 @@ COPY --from=builder /usr/src/app/package.json ./
 COPY --from=builder /usr/src/app/prisma ./prisma
 
 # 安装仅生产环境需要的依赖
-RUN npm install -g pnpm && pnpm install --prod
+RUN npm install -g pnpm && pnpm install
 
 # 暴露端口
 EXPOSE 3000
