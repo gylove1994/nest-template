@@ -23,6 +23,8 @@ import ossConfig from './configs/oss-config';
 import { LoggerModule } from 'nestjs-pino';
 import loggerConfig from './configs/logger-config';
 import rabbitmqConfig from './configs/rabbitmq-config';
+import { SubscribeModule } from './modules/rabbitmq/subscribe/subscribe.module';
+import { PublishModule } from './modules/rabbitmq/publish/publish.module';
 
 const envFilePath = process.env.NODE_ENV;
 
@@ -84,10 +86,11 @@ const globalModules: DynamicModule[] = [
   MailerModule.forRootAsync(mailerConfig.asProvider()),
   NestMinioModule.registerAsync(ossConfig.asProvider()),
   LoggerModule.forRootAsync(loggerConfig.asProvider()),
+  PublishModule.forRoot(),
 ];
 
 @Module({
-  imports: [...globalModules],
+  imports: [...globalModules, SubscribeModule],
   providers: [...providers],
 })
 export class AppModule {}
