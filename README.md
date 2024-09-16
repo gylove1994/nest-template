@@ -69,9 +69,9 @@ cp .env.example .env.production
 由于本项目使用docker进行自动部署，所以需要安装docker仓库以进行自动部署，并配置docker仓库的secret：
 
 ```text
-DOCKER_USERNAME: <docker username>
-DOCKER_PASSWORD: <docker password>
-DOCKER_REGISTRY: <docker registry>
+REGISTRY_USERNAME: <docker username>
+REGISTRY_PASSWORD: <docker password>
+REGISTRY_URL: <docker registry>
 ```
 
 > 可以使用[sealos](https://cloud.sealos.run/?uid=OvC84TSUES)提供的docker仓库服务，一件部署，简单快捷。（使用前述连接注册账号，我可以获得返利，感谢您支持本项目）
@@ -79,9 +79,9 @@ DOCKER_REGISTRY: <docker registry>
 如果使用docker的公开仓库，请将以下secret设置为下列值：
 
 ```text
-DOCKER_USERNAME: <docker username>
-DOCKER_PASSWORD: <docker password>
-DOCKER_REGISTRY: docker.io
+REGISTRY_USERNAME: <docker username>
+REGISTRY_PASSWORD: <docker password>
+REGISTRY_URL: docker.io
 ```
 
 #### 4.移除不需要的服务

@@ -31,6 +31,7 @@
     "p:check:dev": "dotenv -e .env.development prisma validate && dotenv -e .env.development prisma migrate reset -f",
     "p:check:test": "dotenv -e .env.test prisma validate && dotenv -e .env.test prisma migrate reset -f",
     "p:run": "prisma migrate deploy",
+    "prisma:generate": "prisma generate",
     "doc:gen": "compodoc -p tsconfig.json",
     "doc:serve": "compodoc -p tsconfig.json -s",
     "env:start:dev": "docker-compose -f docker-compose-dev.yml up -d",

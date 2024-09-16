@@ -45,7 +45,7 @@ COPY --from=builder /usr/src/app/prisma ./prisma
 RUN npm install -g pnpm && pnpm install --prod
 
 # 暴露端口
-EXPOSE 4000
+EXPOSE 3000
 
 # 启动应用
 CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma db seed && node dist/src/main"]
