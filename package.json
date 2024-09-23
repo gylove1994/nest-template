@@ -71,7 +71,7 @@
     "minio": "^8.0.1",
     "moment": "^2.30.1",
     "nest-winston": "^1.10.0",
-    "nestjs-i18n": "^10.4.5",
+    "nestjs-i18n": "^10.4.9",
     "nestjs-minio": "^2.6.2",
     "nestjs-pino": "^4.1.0",
     "nestjs-prisma": "^0.23.0",
