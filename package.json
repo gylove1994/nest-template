@@ -53,7 +53,7 @@
     "@nestjs/platform-socket.io": "^10.3.10",
     "@nestjs/schedule": "^4.1.0",
     "@nestjs/swagger": "^7.4.0",
-    "@nestjs/websockets": "^10.3.10",
+    "@nestjs/websockets": "^10.4.4",
     "@prisma/client": "5.17.0",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
