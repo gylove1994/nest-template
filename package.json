@@ -51,7 +51,7 @@
     "@nestjs/devtools-integration": "^0.1.6",
     "@nestjs/platform-express": "^10.4.2",
     "@nestjs/platform-socket.io": "^10.3.10",
-    "@nestjs/schedule": "^4.1.0",
+    "@nestjs/schedule": "^4.1.1",
     "@nestjs/swagger": "^7.4.0",
     "@nestjs/websockets": "^10.4.4",
     "@prisma/client": "5.17.0",
