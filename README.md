@@ -6,7 +6,6 @@
 
 - 使用 TypeScript 开发
 - 集成 Prisma ORM 用于数据库操作
-- 支持多语言国际化 (i18n)
 - 集成 CI/CD 工作流
 - 使用 pnpm 作为包管理器
 - 集成 RabbitMQ 消息队列
