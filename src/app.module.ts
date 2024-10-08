@@ -6,15 +6,11 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import appConfig from './configs/app-config';
-import { PrismaModule, PrismaService } from 'nestjs-prisma';
+import { PrismaModule } from 'nestjs-prisma';
 import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
-import { APP_INTERCEPTOR, APP_PIPE, Reflector } from '@nestjs/core';
-import { HeaderResolver, I18nModule, I18nService } from 'nestjs-i18n';
-import * as path from 'path';
-import { ValidationI18nPipe } from './commons/pipes/validationI18n.pipe';
-import { DBValidationPipe } from './commons/slices/DBValidation';
+import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { RedisOptions } from 'ioredis';
 import cacheConfig from './configs/cache-config';
 import { MailerModule } from '@nestjs-modules/mailer';
@@ -37,22 +33,11 @@ const providers: Provider[] = [
   },
   {
     provide: APP_PIPE,
-    useFactory: (
-      i18n: I18nService,
-      prismaService: PrismaService,
-      reflector: Reflector,
-    ) => {
-      return [
-        new ValidationPipe({
-          disableErrorMessages: false,
-          whitelist: true,
-          transform: true,
-        }),
-        new DBValidationPipe(prismaService, reflector),
-        new ValidationI18nPipe(i18n),
-      ];
-    },
-    inject: [I18nService, ConfigService, PrismaService, Reflector],
+    useValue: new ValidationPipe({
+      disableErrorMessages: false,
+      whitelist: true,
+      transform: true,
+    }),
   },
 ];
 
@@ -74,14 +59,6 @@ const globalModules: Array<DynamicModule | Type<any>> = [
     envFilePath: `.env.${envFilePath ?? 'production'}`,
   }),
   CacheModule.registerAsync<RedisOptions>(cacheConfig.asProvider()),
-  I18nModule.forRoot({
-    fallbackLanguage: 'zh_CN',
-    loaderOptions: {
-      path: path.join(__dirname, '/i18n/'),
-      watch: true,
-    },
-    resolvers: [new HeaderResolver(['x-lang'])],
-  }),
   PrismaModule.forRoot({
     isGlobal: true,
   }),

@@ -12,7 +12,7 @@ export function IsExistInDataBase<T>(
     name: string;
   },
   key: string,
-  validationOptions?: ValidationOptions,
+  validationOptions?: ValidationOptions & { extraWhere?: Record<string, any> },
 ) {
   return function (object: any, propertyName: string) {
     registerDecorator({

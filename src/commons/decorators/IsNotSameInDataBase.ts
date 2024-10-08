@@ -12,8 +12,7 @@ export function IsNotSameInDataBase<
 >(
   entityName: Prisma.TypeMap['meta']['modelProps'],
   key: string,
-  validationOptions?: ValidationOptions,
-  extraWhere?: K,
+  validationOptions?: ValidationOptions & { extraWhere?: K },
 ) {
   return function (object: any, propertyName: string) {
     registerDecorator({
@@ -36,7 +35,7 @@ export function IsNotSameInDataBase<
               where: {
                 [key]: value,
                 id: { not: id }, // 排除当前实体
-                ...extraWhere,
+                ...validationOptions?.extraWhere,
               },
             });
             return count === 0;
